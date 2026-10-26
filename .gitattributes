@@ -1,0 +1,10 @@
+# Satır sonları her ortamda LF kalsın.
+* text=auto eol=lf
+*.png binary
+
+# Dağıtım paketine (git archive) girmeyen geliştirme dosyaları.
+/tests export-ignore
+/docs export-ignore
+/phpcs.xml.dist export-ignore
+/.gitignore export-ignore
+/.gitattributes export-ignore

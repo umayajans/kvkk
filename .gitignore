@@ -1,0 +1,11 @@
+# Müşteri sayfalarından alınan test fikstürleri repoya girmez.
+tests/fixtures/*.html
+
+# Müşteriye özel notlar yalnızca yerelde tutulur (repo herkese açık).
+/docs/
+
+# Geliştirme araçları
+/vendor/
+/node_modules/
+.DS_Store
+Thumbs.db
