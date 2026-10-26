@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name:       Umay Çerez Yöneticisi
- * Plugin URI:        https://www.umayajans.com
  * Description:       Cookie consent for Turkish websites based on the KVKK Cookie Guidelines: consent banner, blocking before consent, site scan and consent records.
  * Version:           1.0.0
  * Requires at least: 6.7
