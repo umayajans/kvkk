@@ -20,13 +20,13 @@ $kvkkc_checks = KVKKC_Admin::checks( $kvkkc_settings );
 $kvkkc_status = KVKKC_Integrations::status();
 
 $kvkkc_intros = array(
-    'gorunum'     => __( 'Bandın sayfadaki yeri, biçimi ve butonları. Değişiklikler sağdaki önizlemede anında görünür.', 'kvkk-cerez' ),
-    'renk'        => __( 'Varsayılan olarak sitenin yazı tipi kullanılır. Renkleri marka paletinize göre ayarlayın; kontrast yetersizse çizelge uyarır.', 'kvkk-cerez' ),
-    'metinler'    => __( 'Ziyaretçinin gördüğü tüm metinler. Boş bırakılan alanda varsayılan metin kullanılır.', 'kvkk-cerez' ),
-    'kategoriler' => __( 'Tercihler penceresindeki dört kategori. Hangi çerezin hangi kategoride olduğunu Çerez Envanteri sayfasından yönetin.', 'kvkk-cerez' ),
-    'sayfalar'    => __( 'Bantta ve tercihler penceresinde bağlantısı verilen yasal metinler.', 'kvkk-cerez' ),
-    'davranis'    => __( 'Tercihin süresi, iznin geri alınması ve sitedeki diğer eklentilerle iletişim.', 'kvkk-cerez' ),
-    'gelismis'    => __( 'Elle engelleme kuralları, rıza kayıtlarının saklanması ve özel CSS.', 'kvkk-cerez' ),
+    'gorunum'     => __( 'Bandın sayfadaki yeri, biçimi ve butonları. Değişiklikler sağdaki önizlemede anında görünür.', 'umay-cerez-yoneticisi' ),
+    'renk'        => __( 'Varsayılan olarak sitenin yazı tipi kullanılır. Renkleri marka paletinize göre ayarlayın; kontrast yetersizse çizelge uyarır.', 'umay-cerez-yoneticisi' ),
+    'metinler'    => __( 'Ziyaretçinin gördüğü tüm metinler. Boş bırakılan alanda varsayılan metin kullanılır.', 'umay-cerez-yoneticisi' ),
+    'kategoriler' => __( 'Tercihler penceresindeki dört kategori. Hangi çerezin hangi kategoride olduğunu Çerez Envanteri sayfasından yönetin.', 'umay-cerez-yoneticisi' ),
+    'sayfalar'    => __( 'Bantta ve tercihler penceresinde bağlantısı verilen yasal metinler.', 'umay-cerez-yoneticisi' ),
+    'davranis'    => __( 'Tercihin süresi, iznin geri alınması ve sitedeki diğer eklentilerle iletişim.', 'umay-cerez-yoneticisi' ),
+    'gelismis'    => __( 'Elle engelleme kuralları, rıza kayıtlarının saklanması ve özel CSS.', 'umay-cerez-yoneticisi' ),
 );
 
 $kvkkc_section_fields = array();
@@ -51,7 +51,7 @@ $kvkkc_passed = count(
 );
 ?>
 <div class="wrap kvkkc-app">
-    <h1 class="screen-reader-text"><?php esc_html_e( 'KVKK Çerez Yöneticisi', 'kvkk-cerez' ); ?></h1>
+    <h1 class="screen-reader-text"><?php esc_html_e( 'Umay Çerez Yöneticisi', 'umay-cerez-yoneticisi' ); ?></h1>
     <?php KVKKC_Admin::render_header( 'kvkk-cerez' ); ?>
     <?php settings_errors(); ?>
 
@@ -59,7 +59,7 @@ $kvkkc_passed = count(
         <?php settings_fields( 'kvkkc_settings_group' ); ?>
 
         <div class="kvkkc-layout">
-            <div class="kvkkc-tabs" role="tablist" aria-orientation="vertical" aria-label="<?php esc_attr_e( 'Ayar bölümleri', 'kvkk-cerez' ); ?>">
+            <div class="kvkkc-tabs" role="tablist" aria-orientation="vertical" aria-label="<?php esc_attr_e( 'Ayar bölümleri', 'umay-cerez-yoneticisi' ); ?>">
                 <?php $kvkkc_first = true; ?>
                 <?php foreach ( $kvkkc_tabs as $kvkkc_id => $kvkkc_tab ) : ?>
                     <button type="button" role="tab" class="kvkkc-tab" id="kvkkc-tab-<?php echo esc_attr( $kvkkc_id ); ?>" data-tab="<?php echo esc_attr( $kvkkc_id ); ?>" aria-controls="kvkkc-panel-<?php echo esc_attr( $kvkkc_id ); ?>" aria-selected="<?php echo $kvkkc_first ? 'true' : 'false'; ?>" tabindex="<?php echo $kvkkc_first ? '0' : '-1'; ?>">
@@ -95,19 +95,19 @@ $kvkkc_passed = count(
 
                         <?php if ( 'sayfalar' === $kvkkc_id ) : ?>
                             <div class="kvkkc-card">
-                                <h3 class="kvkkc-card-title"><?php esc_html_e( 'Kısa kodlar', 'kvkk-cerez' ); ?></h3>
+                                <h3 class="kvkkc-card-title"><?php esc_html_e( 'Kısa kodlar', 'umay-cerez-yoneticisi' ); ?></h3>
                                 <dl class="kvkkc-codes">
                                     <div>
                                         <dt><button type="button" class="kvkkc-code" data-kvkkc-copy="[kvkk_cerez_tablosu]"><code>[kvkk_cerez_tablosu]</code></button></dt>
-                                        <dd><?php esc_html_e( 'Çerez politikası sayfasına ekleyin. Envanterdeki çerezleri kategori, sağlayıcı, amaç ve süreyle listeler; yurt dışındaki sağlayıcıları da gösterir.', 'kvkk-cerez' ); ?></dd>
+                                        <dd><?php esc_html_e( 'Çerez politikası sayfasına ekleyin. Envanterdeki çerezleri kategori, sağlayıcı, amaç ve süreyle listeler; yurt dışındaki sağlayıcıları da gösterir.', 'umay-cerez-yoneticisi' ); ?></dd>
                                     </div>
                                     <div>
                                         <dt><button type="button" class="kvkkc-code" data-kvkkc-copy="[kvkk_cerez_ayarlari]"><code>[kvkk_cerez_ayarlari]</code></button></dt>
-                                        <dd><?php esc_html_e( 'Tercihler penceresini açan bağlantı. Alt bilgi veya iletişim sayfası için uygundur.', 'kvkk-cerez' ); ?></dd>
+                                        <dd><?php esc_html_e( 'Tercihler penceresini açan bağlantı. Alt bilgi veya iletişim sayfası için uygundur.', 'umay-cerez-yoneticisi' ); ?></dd>
                                     </div>
                                     <div>
                                         <dt><button type="button" class="kvkkc-code" data-kvkkc-copy="#kvkkc-ayarlar"><code>#kvkkc-ayarlar</code></button></dt>
-                                        <dd><?php esc_html_e( 'Menüye bu adresle "Özel bağlantı" eklerseniz tıklandığında tercihler penceresi açılır.', 'kvkk-cerez' ); ?></dd>
+                                        <dd><?php esc_html_e( 'Menüye bu adresle "Özel bağlantı" eklerseniz tıklandığında tercihler penceresi açılır.', 'umay-cerez-yoneticisi' ); ?></dd>
                                     </div>
                                 </dl>
                             </div>
@@ -115,7 +115,7 @@ $kvkkc_passed = count(
 
                         <?php if ( 'davranis' === $kvkkc_id && $kvkkc_status ) : ?>
                             <div class="kvkkc-card">
-                                <h3 class="kvkkc-card-title"><?php esc_html_e( 'Sitedeki eklentiler', 'kvkk-cerez' ); ?></h3>
+                                <h3 class="kvkkc-card-title"><?php esc_html_e( 'Sitedeki eklentiler', 'umay-cerez-yoneticisi' ); ?></h3>
                                 <ul class="kvkkc-status">
                                     <?php foreach ( $kvkkc_status as $kvkkc_item ) : ?>
                                         <li class="is-<?php echo esc_attr( $kvkkc_item['state'] ); ?>">
@@ -131,23 +131,23 @@ $kvkkc_passed = count(
                 <?php endforeach; ?>
 
                 <div class="kvkkc-savebar">
-                    <span class="kvkkc-dirty" data-kvkkc-dirty hidden><?php esc_html_e( 'Kaydedilmemiş değişiklikler var', 'kvkk-cerez' ); ?></span>
-                    <?php submit_button( __( 'Değişiklikleri kaydet', 'kvkk-cerez' ), 'primary kvkkc-save', 'submit', false ); ?>
+                    <span class="kvkkc-dirty" data-kvkkc-dirty hidden><?php esc_html_e( 'Kaydedilmemiş değişiklikler var', 'umay-cerez-yoneticisi' ); ?></span>
+                    <?php submit_button( __( 'Değişiklikleri kaydet', 'umay-cerez-yoneticisi' ), 'primary kvkkc-save', 'submit', false ); ?>
                 </div>
             </div>
 
-            <aside class="kvkkc-side" aria-label="<?php esc_attr_e( 'Önizleme ve rehber kontrol listesi', 'kvkk-cerez' ); ?>">
+            <aside class="kvkkc-side" aria-label="<?php esc_attr_e( 'Önizleme ve rehber kontrol listesi', 'umay-cerez-yoneticisi' ); ?>">
                 <div class="kvkkc-preview">
                     <div class="kvkkc-preview-tools">
-                        <div class="kvkkc-segment" role="group" aria-label="<?php esc_attr_e( 'Önizlenen katman', 'kvkk-cerez' ); ?>">
-                            <button type="button" data-kvkkc-layer="banner" aria-pressed="true"><?php esc_html_e( 'Bant', 'kvkk-cerez' ); ?></button>
-                            <button type="button" data-kvkkc-layer="prefs" aria-pressed="false"><?php esc_html_e( 'Tercihler', 'kvkk-cerez' ); ?></button>
-                            <button type="button" data-kvkkc-layer="float" aria-pressed="false"><?php esc_html_e( 'Simge', 'kvkk-cerez' ); ?></button>
+                        <div class="kvkkc-segment" role="group" aria-label="<?php esc_attr_e( 'Önizlenen katman', 'umay-cerez-yoneticisi' ); ?>">
+                            <button type="button" data-kvkkc-layer="banner" aria-pressed="true"><?php esc_html_e( 'Bant', 'umay-cerez-yoneticisi' ); ?></button>
+                            <button type="button" data-kvkkc-layer="prefs" aria-pressed="false"><?php esc_html_e( 'Tercihler', 'umay-cerez-yoneticisi' ); ?></button>
+                            <button type="button" data-kvkkc-layer="float" aria-pressed="false"><?php esc_html_e( 'Simge', 'umay-cerez-yoneticisi' ); ?></button>
                         </div>
-                        <div class="kvkkc-segment" role="group" aria-label="<?php esc_attr_e( 'Ekran genişliği', 'kvkk-cerez' ); ?>">
-                            <button type="button" data-kvkkc-device="desktop" aria-pressed="true" aria-label="<?php esc_attr_e( 'Masaüstü', 'kvkk-cerez' ); ?>" title="<?php esc_attr_e( 'Masaüstü', 'kvkk-cerez' ); ?>"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M9 20h6M12 16v4"/></svg></button>
-                            <button type="button" data-kvkkc-device="mobile" aria-pressed="false" aria-label="<?php esc_attr_e( 'Telefon', 'kvkk-cerez' ); ?>" title="<?php esc_attr_e( 'Telefon', 'kvkk-cerez' ); ?>"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></button>
-                            <button type="button" data-kvkkc-expand aria-pressed="false" aria-label="<?php esc_attr_e( 'Önizlemeyi büyüt', 'kvkk-cerez' ); ?>" title="<?php esc_attr_e( 'Önizlemeyi büyüt (Esc ile kapanır)', 'kvkk-cerez' ); ?>"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg></button>
+                        <div class="kvkkc-segment" role="group" aria-label="<?php esc_attr_e( 'Ekran genişliği', 'umay-cerez-yoneticisi' ); ?>">
+                            <button type="button" data-kvkkc-device="desktop" aria-pressed="true" aria-label="<?php esc_attr_e( 'Masaüstü', 'umay-cerez-yoneticisi' ); ?>" title="<?php esc_attr_e( 'Masaüstü', 'umay-cerez-yoneticisi' ); ?>"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M9 20h6M12 16v4"/></svg></button>
+                            <button type="button" data-kvkkc-device="mobile" aria-pressed="false" aria-label="<?php esc_attr_e( 'Telefon', 'umay-cerez-yoneticisi' ); ?>" title="<?php esc_attr_e( 'Telefon', 'umay-cerez-yoneticisi' ); ?>"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></button>
+                            <button type="button" data-kvkkc-expand aria-pressed="false" aria-label="<?php esc_attr_e( 'Önizlemeyi büyüt', 'umay-cerez-yoneticisi' ); ?>" title="<?php esc_attr_e( 'Önizlemeyi büyüt (Esc ile kapanır)', 'umay-cerez-yoneticisi' ); ?>"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg></button>
                         </div>
                     </div>
                     <div class="kvkkc-device" data-kvkkc-device-frame="desktop">
@@ -156,7 +156,7 @@ $kvkkc_passed = count(
                             <em><?php echo esc_html( wp_parse_url( home_url(), PHP_URL_HOST ) ); ?></em>
                         </div>
                         <div class="kvkkc-device-view" data-kvkkc-view>
-                            <iframe id="kvkkc-preview-frame" title="<?php esc_attr_e( 'Çerez bandı önizlemesi', 'kvkk-cerez' ); ?>" tabindex="-1"></iframe>
+                            <iframe id="kvkkc-preview-frame" title="<?php esc_attr_e( 'Çerez bandı önizlemesi', 'umay-cerez-yoneticisi' ); ?>" tabindex="-1"></iframe>
                         </div>
                     </div>
                 </div>
@@ -167,12 +167,12 @@ $kvkkc_passed = count(
                             <defs><path id="kvkkc-seal-ring" d="M60 60m-43 0a43 43 0 1 1 86 0a43 43 0 1 1-86 0"/></defs>
                             <circle cx="60" cy="60" r="56" class="kvkkc-seal-outer"/>
                             <circle cx="60" cy="60" r="31" class="kvkkc-seal-inner"/>
-                            <text class="kvkkc-seal-ring"><textPath href="#kvkkc-seal-ring" startOffset="0"><?php esc_html_e( 'KVKK ÇEREZ REHBERİ · KONTROL LİSTESİ · ', 'kvkk-cerez' ); ?></textPath></text>
+                            <text class="kvkkc-seal-ring"><textPath href="#kvkkc-seal-ring" startOffset="0"><?php esc_html_e( 'KVKK ÇEREZ REHBERİ · KONTROL LİSTESİ · ', 'umay-cerez-yoneticisi' ); ?></textPath></text>
                             <text x="60" y="66" text-anchor="middle" class="kvkkc-seal-score" data-kvkkc-score><?php echo esc_html( $kvkkc_passed . '/' . count( $kvkkc_checks ) ); ?></text>
                         </svg>
                         <div>
-                            <h2><?php esc_html_e( 'Rehber kontrol listesi', 'kvkk-cerez' ); ?></h2>
-                            <p><?php esc_html_e( 'Ayarlarınızın KVKK Çerez Uygulamaları Rehberi (Temmuz 2025) önerileriyle karşılaştırması. Sayfa numaraları rehbere aittir. Bu liste hukuki görüş değildir ve uyumu garanti etmez.', 'kvkk-cerez' ); ?></p>
+                            <h2><?php esc_html_e( 'Rehber kontrol listesi', 'umay-cerez-yoneticisi' ); ?></h2>
+                            <p><?php esc_html_e( 'Ayarlarınızın KVKK Çerez Uygulamaları Rehberi (Temmuz 2025) önerileriyle karşılaştırması. Sayfa numaraları rehbere aittir. Bu liste hukuki görüş değildir ve uyumu garanti etmez.', 'umay-cerez-yoneticisi' ); ?></p>
                         </div>
                     </div>
                     <ul class="kvkkc-checks" data-kvkkc-checks>

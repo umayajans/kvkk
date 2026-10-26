@@ -13,8 +13,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Engelleyici
  *
- * Sayfa HTML'i tamponlanır ve WP_HTML_Tag_Processor ile taranır. Rıza gerektiren script'lerin
- * tipi text/plain yapılır, iframe ve noscript piksellerinin adresi data-kvkkc-src'ye taşınır.
+ * Sayfa HTML'i WP_HTML_Tag_Processor ile taranır. Rıza gerektiren script'lerin tipi text/plain
+ * yapılır, iframe ve noscript piksellerinin adresi data-kvkkc-src'ye taşınır.
+ *
+ * HTML'e iki yoldan ulaşılır. Çekirdeğin şablon çıktı tamponu (WordPress 6.9+) açıksa
+ * wp_template_enhancement_output_buffer filtresi kullanılır. Tampon bir eklenti tarafından
+ * kapatılmışsa (Elementor 6.9 ve üstünde kapatır) veya WordPress daha eskiyse, şablon
+ * includes/template-wrapper.php üzerinden yüklenir ve tampon render_template() içinde açılıp kapanır.
  * Çıktı her ziyaretçi için aynıdır; rıza durumuna göre açma işi tarayıcıda yapılır. Bu sayede
  * sayfa önbelleği (LiteSpeed, WP Rocket) ile sorunsuz çalışır.
  */
@@ -28,39 +33,61 @@ class KVKKC_Blocker {
     const JS_TYPES = array( '', 'text/javascript', 'application/javascript', 'text/ecmascript', 'application/ecmascript', 'module' );
 
     /**
-     * Tamponun açıldığı seviye (açılmadıysa 0).
+     * Ara şablonun yükleyeceği asıl şablon.
      *
-     * @var int
+     * @var string
      */
-    private static $level = 0;
+    private static $template = '';
 
     /**
      * Kancalar.
      */
     public static function init() {
         add_action( 'template_redirect', array( __CLASS__, 'start' ), 0 );
-        add_action( 'shutdown', array( __CLASS__, 'end' ), 0 );
     }
 
     /**
-     * Tamponu başlatır.
+     * Engellemeyi bağlar. Çekirdek filtre şablon yüklenmeden önce eklendiği için çekirdek tamponu
+     * kendiliğinden açar; açılmayacaksa maybe_wrap() ara şablona geçer.
      */
     public static function start() {
         if ( self::should_buffer() ) {
-            ob_start( array( __CLASS__, 'callback' ) );
-            self::$level = ob_get_level();
+            add_filter( 'wp_template_enhancement_output_buffer', array( __CLASS__, 'callback' ) );
+            add_filter( 'template_include', array( __CLASS__, 'maybe_wrap' ), PHP_INT_MAX );
         }
     }
 
     /**
-     * Tamponu kapatır. Üstünde başka bir eklentinin tamponu açık kaldıysa ona dokunulmaz;
-     * o durumda WordPress'in kapanıştaki wp_ob_end_flush_all() çağrısı hepsini sırayla boşaltır.
+     * Çekirdek tampon bu istekte açılmayacaksa asıl şablonu ara şablonla sarar.
+     *
+     * @param string $template Yüklenecek şablon.
+     * @return string
      */
-    public static function end() {
-        if ( self::$level && ob_get_level() === self::$level ) {
-            ob_end_flush();
+    public static function maybe_wrap( $template ) {
+        $core = function_exists( 'wp_should_output_buffer_template_for_enhancement' ) && wp_should_output_buffer_template_for_enhancement();
+        if ( $core || ! is_string( $template ) || '' === $template || ! is_file( $template ) ) {
+            return $template;
         }
-        self::$level = 0;
+
+        self::$template = $template;
+        return KVKKC_DIR . 'includes/template-wrapper.php';
+    }
+
+    /**
+     * Asıl şablonu tamponlayarak yükler. Tampon bu fonksiyonda açılır ve finally ile her durumda
+     * kapanır; şablonun kapatmadan bıraktığı iç tamponlar da sırayla boşaltılır. Çıktıyı callback()
+     * işler.
+     */
+    public static function render_template() {
+        $level = ob_get_level();
+        ob_start( array( __CLASS__, 'callback' ) );
+        try {
+            load_template( self::$template, false );
+        } finally {
+            while ( ob_get_level() > $level ) {
+                ob_end_flush();
+            }
+        }
     }
 
     /**
@@ -81,35 +108,17 @@ class KVKKC_Blocker {
     }
 
     /**
-     * Tampon geri çağrısı. Bir hata olursa sayfa değiştirilmeden gönderilir.
+     * Şablon çıktı filtresi. Bir hata olursa sayfa değiştirilmeden gönderilir.
      *
      * @param string $html Sayfa çıktısı.
      * @return string
      */
     public static function callback( $html ) {
-        if ( ! self::is_html_response() ) {
-            return $html;
-        }
-
         try {
             return self::rewrite( $html, KVKKC_Services::block_rules() );
         } catch ( Throwable $e ) {
             return $html;
         }
-    }
-
-    /**
-     * Yanıt HTML mi? Content-Type başlığı açıkça başka bir tür söylüyorsa dokunulmaz.
-     *
-     * @return bool
-     */
-    private static function is_html_response() {
-        foreach ( headers_list() as $header ) {
-            if ( 0 === stripos( $header, 'content-type:' ) ) {
-                return false !== stripos( $header, 'html' );
-            }
-        }
-        return true;
     }
 
     /**

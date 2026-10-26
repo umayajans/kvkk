@@ -230,10 +230,10 @@ class KVKKC_Frontend {
 
         $links = array();
         foreach ( array(
-            'page_cerez'      => __( 'Çerez Politikası', 'kvkk-cerez' ),
-            'page_aydinlatma' => __( 'KVKK Aydınlatma Metni', 'kvkk-cerez' ),
-            'page_gizlilik'   => __( 'Gizlilik Politikası', 'kvkk-cerez' ),
-            'page_acik_riza'  => __( 'Açık Rıza Metni', 'kvkk-cerez' ),
+            'page_cerez'      => __( 'Çerez Politikası', 'umay-cerez-yoneticisi' ),
+            'page_aydinlatma' => __( 'KVKK Aydınlatma Metni', 'umay-cerez-yoneticisi' ),
+            'page_gizlilik'   => __( 'Gizlilik Politikası', 'umay-cerez-yoneticisi' ),
+            'page_acik_riza'  => __( 'Açık Rıza Metni', 'umay-cerez-yoneticisi' ),
         ) as $key => $label ) {
             if ( '' !== (string) $v( $key ) ) {
                 $links[] = array( $label, esc_url_raw( (string) $v( $key ) ), in_array( $key, array( 'page_cerez', 'page_aydinlatma' ), true ) );
@@ -289,18 +289,18 @@ class KVKKC_Frontend {
                 'phText'      => $v( 'placeholder_text' ),
                 'phButton'    => $v( 'placeholder_btn' ),
                 'floatLabel'  => $v( 'float_label' ),
-                'region'      => __( 'Çerez bildirimi', 'kvkk-cerez' ),
-                'close'       => __( 'Kapat', 'kvkk-cerez' ),
-                'showCookies' => __( 'Çerezleri göster', 'kvkk-cerez' ),
-                'colName'     => __( 'Çerez', 'kvkk-cerez' ),
-                'colProvider' => __( 'Sağlayıcı', 'kvkk-cerez' ),
-                'colPurpose'  => __( 'Amaç', 'kvkk-cerez' ),
-                'colDuration' => __( 'Süre', 'kvkk-cerez' ),
-                'service'     => __( 'Hizmet', 'kvkk-cerez' ),
-                'noCookies'   => __( 'Bu kategoride şu an çerez bulunmuyor.', 'kvkk-cerez' ),
-                'consentId'   => __( 'Rıza No', 'kvkk-cerez' ),
-                'consentDate' => __( 'Tarih', 'kvkk-cerez' ),
-                'saved'       => __( 'Çerez tercihiniz kaydedildi.', 'kvkk-cerez' ),
+                'region'      => __( 'Çerez bildirimi', 'umay-cerez-yoneticisi' ),
+                'close'       => __( 'Kapat', 'umay-cerez-yoneticisi' ),
+                'showCookies' => __( 'Çerezleri göster', 'umay-cerez-yoneticisi' ),
+                'colName'     => __( 'Çerez', 'umay-cerez-yoneticisi' ),
+                'colProvider' => __( 'Sağlayıcı', 'umay-cerez-yoneticisi' ),
+                'colPurpose'  => __( 'Amaç', 'umay-cerez-yoneticisi' ),
+                'colDuration' => __( 'Süre', 'umay-cerez-yoneticisi' ),
+                'service'     => __( 'Hizmet', 'umay-cerez-yoneticisi' ),
+                'noCookies'   => __( 'Bu kategoride şu an çerez bulunmuyor.', 'umay-cerez-yoneticisi' ),
+                'consentId'   => __( 'Rıza No', 'umay-cerez-yoneticisi' ),
+                'consentDate' => __( 'Tarih', 'umay-cerez-yoneticisi' ),
+                'saved'       => __( 'Çerez tercihiniz kaydedildi.', 'umay-cerez-yoneticisi' ),
             ),
             'links'      => $links,
             'cats'       => $categories,
@@ -393,17 +393,17 @@ class KVKKC_Frontend {
                 <h3><?php echo esc_html( self::category_name( $category ) ); ?></h3>
                 <p><?php echo esc_html( (string) kvkkc_setting( 'cat_' . $category . '_desc' ) ); ?></p>
                 <?php if ( empty( $tables[ $category ] ) ) : ?>
-                    <p class="kvkkc-policy-empty"><?php esc_html_e( 'Bu kategoride şu an çerez bulunmuyor.', 'kvkk-cerez' ); ?></p>
+                    <p class="kvkkc-policy-empty"><?php esc_html_e( 'Bu kategoride şu an çerez bulunmuyor.', 'umay-cerez-yoneticisi' ); ?></p>
                 <?php else : ?>
                     <div class="kvkkc-policy-scroll">
                         <table class="kvkkc-policy-table">
                             <thead>
                                 <tr>
-                                    <th scope="col"><?php esc_html_e( 'Çerezin adı', 'kvkk-cerez' ); ?></th>
-                                    <th scope="col"><?php esc_html_e( 'Sağlayıcı', 'kvkk-cerez' ); ?></th>
-                                    <th scope="col"><?php esc_html_e( 'Tipi', 'kvkk-cerez' ); ?></th>
-                                    <th scope="col"><?php esc_html_e( 'Amacı', 'kvkk-cerez' ); ?></th>
-                                    <th scope="col"><?php esc_html_e( 'Saklama süresi', 'kvkk-cerez' ); ?></th>
+                                    <th scope="col"><?php esc_html_e( 'Çerezin adı', 'umay-cerez-yoneticisi' ); ?></th>
+                                    <th scope="col"><?php esc_html_e( 'Sağlayıcı', 'umay-cerez-yoneticisi' ); ?></th>
+                                    <th scope="col"><?php esc_html_e( 'Tipi', 'umay-cerez-yoneticisi' ); ?></th>
+                                    <th scope="col"><?php esc_html_e( 'Amacı', 'umay-cerez-yoneticisi' ); ?></th>
+                                    <th scope="col"><?php esc_html_e( 'Saklama süresi', 'umay-cerez-yoneticisi' ); ?></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -411,7 +411,7 @@ class KVKKC_Frontend {
                                     <tr>
                                         <td><?php echo $row['s'] ? esc_html( $row['n'] ) : '<code>' . esc_html( $row['n'] ) . '</code>'; ?></td>
                                         <td><?php echo esc_html( $row['p'] ); ?></td>
-                                        <td><?php echo 1 === $row['t'] ? esc_html__( 'Birinci taraf', 'kvkk-cerez' ) : esc_html__( 'Üçüncü taraf', 'kvkk-cerez' ); ?></td>
+                                        <td><?php echo 1 === $row['t'] ? esc_html__( 'Birinci taraf', 'umay-cerez-yoneticisi' ) : esc_html__( 'Üçüncü taraf', 'umay-cerez-yoneticisi' ); ?></td>
                                         <td><?php echo esc_html( $row['u'] ); ?></td>
                                         <td><?php echo '' !== $row['d'] ? esc_html( $row['d'] ) : '&ndash;'; ?></td>
                                     </tr>
@@ -428,8 +428,8 @@ class KVKKC_Frontend {
         if ( 'hayir' !== $atts['aktarim'] && '' === $atts['kategori'] && $abroad ) {
             ?>
             <section class="kvkkc-policy-cat">
-                <h3><?php esc_html_e( 'Yurt dışında bulunan hizmet sağlayıcılar', 'kvkk-cerez' ); ?></h3>
-                <p><?php esc_html_e( 'Aşağıdaki hizmetler, yalnızca ilgili kategoriye izin vermeniz halinde çalışır ve verilerinizin bu sağlayıcıların bulunduğu ülkelere aktarılmasına yol açabilir.', 'kvkk-cerez' ); ?></p>
+                <h3><?php esc_html_e( 'Yurt dışında bulunan hizmet sağlayıcılar', 'umay-cerez-yoneticisi' ); ?></h3>
+                <p><?php esc_html_e( 'Aşağıdaki hizmetler, yalnızca ilgili kategoriye izin vermeniz halinde çalışır ve verilerinizin bu sağlayıcıların bulunduğu ülkelere aktarılmasına yol açabilir.', 'umay-cerez-yoneticisi' ); ?></p>
                 <ul>
                     <?php foreach ( $abroad as $provider => $item ) : ?>
                         <li><strong><?php echo esc_html( $provider ); ?></strong> (<?php echo esc_html( $item['country'] ); ?>): <?php echo esc_html( implode( ', ', $item['services'] ) ); ?></li>
@@ -439,7 +439,7 @@ class KVKKC_Frontend {
             <?php
         }
 
-        echo '<p class="kvkkc-policy-manage">' . wp_kses_post( self::shortcode_settings_link( array( 'text' => __( 'Çerez tercihlerimi değiştir', 'kvkk-cerez' ) ) ) ) . '</p>';
+        echo '<p class="kvkkc-policy-manage">' . wp_kses_post( self::shortcode_settings_link( array( 'text' => __( 'Çerez tercihlerimi değiştir', 'umay-cerez-yoneticisi' ) ) ) ) . '</p>';
         echo '</div>';
 
         return (string) ob_get_clean();
@@ -472,7 +472,7 @@ class KVKKC_Frontend {
      */
     public static function shortcode_settings_link( $atts ) {
         $atts = shortcode_atts(
-            array( 'text' => __( 'Çerez Ayarları', 'kvkk-cerez' ) ),
+            array( 'text' => __( 'Çerez Ayarları', 'umay-cerez-yoneticisi' ) ),
             $atts,
             'kvkk_cerez_ayarlari'
         );

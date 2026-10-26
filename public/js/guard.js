@@ -1,4 +1,4 @@
-/* KVKK Çerez Yöneticisi: sayfa başı koruması. Head'e satır içi basılır, window.kvkkcGuard verisini kullanır. */
+/* Umay Çerez Yöneticisi: sayfa başı koruması. Head'e satır içi basılır, window.kvkkcGuard verisini kullanır. */
 (function (w, d) {
     'use strict';
 

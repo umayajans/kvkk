@@ -44,7 +44,7 @@
     <rule ref="WordPress.WP.I18n">
         <properties>
             <property name="text_domain" type="array">
-                <element value="kvkk-cerez"/>
+                <element value="umay-cerez-yoneticisi"/>
             </property>
         </properties>
     </rule>

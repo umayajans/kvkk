@@ -184,8 +184,8 @@ class KVKKC_Integrations {
                 'state' => $ajax ? 'ok' : 'warn',
                 'title' => 'PixelYourSite',
                 'text'  => $ajax
-                    ? __( 'Meta ve Google Ads pikselleri ziyaretçinin pazarlama iznine göre çalışıyor; sunucu tarafı olaylar da aynı izne bağlı.', 'kvkk-cerez' )
-                    : __( 'PixelYourSite > GDPR sekmesinde "For Developers" kartını açın ve "Enable AJAX filter values update" anahtarını açıp kaydedin. Kapalıyken pikseller güvenli tarafta kalır ve izin veren ziyaretçilerde de çalışmaz.', 'kvkk-cerez' ),
+                    ? __( 'Meta ve Google Ads pikselleri ziyaretçinin pazarlama iznine göre çalışıyor; sunucu tarafı olaylar da aynı izne bağlı.', 'umay-cerez-yoneticisi' )
+                    : __( 'PixelYourSite > GDPR sekmesinde "For Developers" kartını açın ve "Enable AJAX filter values update" anahtarını açıp kaydedin. Kapalıyken pikseller güvenli tarafta kalır ve izin veren ziyaretçilerde de çalışmaz.', 'umay-cerez-yoneticisi' ),
             );
         }
 
@@ -201,8 +201,8 @@ class KVKKC_Integrations {
                 'state' => $granted ? 'warn' : 'ok',
                 'title' => 'GTM4WP',
                 'text'  => $granted
-                    ? __( 'GTM4WP\'nin kendi İzin Modu varsayılanında "granted" değerler var ve bu eklentinin varsayılanını eziyor. GTM4WP > Integration > Consent Mode seçeneğini kapatın.', 'kvkk-cerez' )
-                    : __( 'Tag Manager kapsayıcısı ziyaretçi izin verene kadar yüklenmez. GTM içindeki Google dışı etiketleri kvkkc_consent olayına bağlayın.', 'kvkk-cerez' ),
+                    ? __( 'GTM4WP\'nin kendi İzin Modu varsayılanında "granted" değerler var ve bu eklentinin varsayılanını eziyor. GTM4WP > Integration > Consent Mode seçeneğini kapatın.', 'umay-cerez-yoneticisi' )
+                    : __( 'Tag Manager kapsayıcısı ziyaretçi izin verene kadar yüklenmez. GTM içindeki Google dışı etiketleri kvkkc_consent olayına bağlayın.', 'umay-cerez-yoneticisi' ),
             );
         }
 
@@ -212,8 +212,8 @@ class KVKKC_Integrations {
                 'state' => $api ? 'ok' : 'info',
                 'title' => 'Site Kit',
                 'text'  => $api
-                    ? __( 'Site Kit, WP Consent API üzerinden bu eklentinin izinlerini okuyor.', 'kvkk-cerez' )
-                    : __( 'Google Analytics etiketi izin verilene kadar engelleniyor. İsterseniz WP Consent API eklentisini kurarak Site Kit\'in izinleri doğrudan okumasını sağlayabilirsiniz.', 'kvkk-cerez' ),
+                    ? __( 'Site Kit, WP Consent API üzerinden bu eklentinin izinlerini okuyor.', 'umay-cerez-yoneticisi' )
+                    : __( 'Google Analytics etiketi izin verilene kadar engelleniyor. İsterseniz WP Consent API eklentisini kurarak Site Kit\'in izinleri doğrudan okumasını sağlayabilirsiniz.', 'umay-cerez-yoneticisi' ),
             );
         }
 
@@ -221,7 +221,7 @@ class KVKKC_Integrations {
             $items[] = array(
                 'state' => 'ok',
                 'title' => defined( 'LSCWP_V' ) ? 'LiteSpeed Cache' : 'WP Rocket',
-                'text'  => __( 'Bant dosyaları erteleme ve birleştirme işlemlerinden muaf tutuluyor; ayar kaydettiğinizde sayfa önbelleği temizlenir.', 'kvkk-cerez' ),
+                'text'  => __( 'Bant dosyaları erteleme ve birleştirme işlemlerinden muaf tutuluyor; ayar kaydettiğinizde sayfa önbelleği temizlenir.', 'umay-cerez-yoneticisi' ),
             );
         }
 
@@ -229,7 +229,7 @@ class KVKKC_Integrations {
             $items[] = array(
                 'state' => 'warn',
                 'title' => 'Cloudflare',
-                'text'  => __( 'Site Cloudflare arkasında. Rıza kayıtlarındaki IP özeti ve hız sınırı için wp-config.php dosyasına define( \'KVKKC_TRUSTED_PROXY_HEADER\', \'HTTP_CF_CONNECTING_IP\' ); satırını ekleyin.', 'kvkk-cerez' ),
+                'text'  => __( 'Site Cloudflare arkasında. Rıza kayıtlarındaki IP özeti ve hız sınırı için wp-config.php dosyasına define( \'KVKKC_TRUSTED_PROXY_HEADER\', \'HTTP_CF_CONNECTING_IP\' ); satırını ekleyin.', 'umay-cerez-yoneticisi' ),
             );
         }
 

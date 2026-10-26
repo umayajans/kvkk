@@ -44,10 +44,10 @@ class KVKKC_Admin {
     public function add_menu() {
         $icon = 'data:image/svg+xml;base64,' . base64_encode( '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="black" d="M10 1.5 3 4.2v5.1c0 4.3 2.9 7.8 7 9.2 4.1-1.4 7-4.9 7-9.2V4.2L10 1.5Zm-1.1 11.9L5.6 10l1.3-1.3 2 2 4.3-4.4 1.3 1.3-5.6 5.8Z"/></svg>' ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode -- menü ikonu.
 
-        $this->hooks[] = add_menu_page( __( 'KVKK Çerez Yöneticisi', 'kvkk-cerez' ), __( 'KVKK Çerez', 'kvkk-cerez' ), 'manage_options', 'kvkk-cerez', array( $this, 'page_settings' ), $icon, 81 );
-        $this->hooks[] = add_submenu_page( 'kvkk-cerez', __( 'Ayarlar', 'kvkk-cerez' ), __( 'Ayarlar', 'kvkk-cerez' ), 'manage_options', 'kvkk-cerez', array( $this, 'page_settings' ) );
-        $this->hooks[] = add_submenu_page( 'kvkk-cerez', __( 'Çerez Envanteri', 'kvkk-cerez' ), __( 'Çerez Envanteri', 'kvkk-cerez' ), 'manage_options', 'kvkk-cerez-envanter', array( $this, 'page_inventory' ) );
-        $this->hooks[] = add_submenu_page( 'kvkk-cerez', __( 'Rıza Kayıtları', 'kvkk-cerez' ), __( 'Rıza Kayıtları', 'kvkk-cerez' ), 'manage_options', 'kvkk-cerez-kayitlar', array( $this, 'page_consents' ) );
+        $this->hooks[] = add_menu_page( __( 'Umay Çerez Yöneticisi', 'umay-cerez-yoneticisi' ), __( 'Umay Çerez', 'umay-cerez-yoneticisi' ), 'manage_options', 'kvkk-cerez', array( $this, 'page_settings' ), $icon, 81 );
+        $this->hooks[] = add_submenu_page( 'kvkk-cerez', __( 'Ayarlar', 'umay-cerez-yoneticisi' ), __( 'Ayarlar', 'umay-cerez-yoneticisi' ), 'manage_options', 'kvkk-cerez', array( $this, 'page_settings' ) );
+        $this->hooks[] = add_submenu_page( 'kvkk-cerez', __( 'Çerez Envanteri', 'umay-cerez-yoneticisi' ), __( 'Çerez Envanteri', 'umay-cerez-yoneticisi' ), 'manage_options', 'kvkk-cerez-envanter', array( $this, 'page_inventory' ) );
+        $this->hooks[] = add_submenu_page( 'kvkk-cerez', __( 'Rıza Kayıtları', 'umay-cerez-yoneticisi' ), __( 'Rıza Kayıtları', 'umay-cerez-yoneticisi' ), 'manage_options', 'kvkk-cerez-kayitlar', array( $this, 'page_consents' ) );
     }
 
     /**
@@ -72,7 +72,7 @@ class KVKKC_Admin {
      * @return array
      */
     public function action_links( $links ) {
-        array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=kvkk-cerez' ) ) . '">' . esc_html__( 'Ayarlar', 'kvkk-cerez' ) . '</a>' );
+        array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=kvkk-cerez' ) ) . '">' . esc_html__( 'Ayarlar', 'umay-cerez-yoneticisi' ) . '</a>' );
         return $links;
     }
 
@@ -103,16 +103,16 @@ class KVKKC_Admin {
                 'bannerCss' => KVKKC_URL . 'public/css/banner.css?ver=' . KVKKC_VERSION,
                 'siteName'  => get_bloginfo( 'name' ),
                 'i18n'      => array(
-                    'scanStart'     => __( 'Sayfa listesi hazırlanıyor...', 'kvkk-cerez' ),
+                    'scanStart'     => __( 'Sayfa listesi hazırlanıyor...', 'umay-cerez-yoneticisi' ),
                     /* translators: 1: taranan sayfa sayısı, 2: toplam sayfa sayısı */
-                    'scanning'      => __( '%1$d / %2$d sayfa tarandı', 'kvkk-cerez' ),
-                    'scanDone'      => __( 'Tarama tamamlandı, sonuçlar yükleniyor...', 'kvkk-cerez' ),
-                    'scanFailed'    => __( 'Tarama başlatılamadı. Sayfayı yenileyip tekrar deneyin.', 'kvkk-cerez' ),
-                    'bumpConfirm'   => __( 'Tüm ziyaretçilerden çerez tercihi yeniden istenecek. Devam edilsin mi?', 'kvkk-cerez' ),
-                    'chooseLogo'    => __( 'Logo seç', 'kvkk-cerez' ),
-                    'useLogo'       => __( 'Bu görseli kullan', 'kvkk-cerez' ),
-                    'removeConfirm' => __( 'Bu hizmet envanterden çıkarılsın mı?', 'kvkk-cerez' ),
-                    'copied'        => __( 'Kopyalandı', 'kvkk-cerez' ),
+                    'scanning'      => __( '%1$d / %2$d sayfa tarandı', 'umay-cerez-yoneticisi' ),
+                    'scanDone'      => __( 'Tarama tamamlandı, sonuçlar yükleniyor...', 'umay-cerez-yoneticisi' ),
+                    'scanFailed'    => __( 'Tarama başlatılamadı. Sayfayı yenileyip tekrar deneyin.', 'umay-cerez-yoneticisi' ),
+                    'bumpConfirm'   => __( 'Tüm ziyaretçilerden çerez tercihi yeniden istenecek. Devam edilsin mi?', 'umay-cerez-yoneticisi' ),
+                    'chooseLogo'    => __( 'Logo seç', 'umay-cerez-yoneticisi' ),
+                    'useLogo'       => __( 'Bu görseli kullan', 'umay-cerez-yoneticisi' ),
+                    'removeConfirm' => __( 'Bu hizmet envanterden çıkarılsın mı?', 'umay-cerez-yoneticisi' ),
+                    'copied'        => __( 'Kopyalandı', 'umay-cerez-yoneticisi' ),
                 ),
             )
         );
@@ -126,62 +126,62 @@ class KVKKC_Admin {
     public static function tabs() {
         return array(
             'gorunum'     => array(
-                'label'    => __( 'Görünüm', 'kvkk-cerez' ),
+                'label'    => __( 'Görünüm', 'umay-cerez-yoneticisi' ),
                 'sections' => array(
-                    'yerlesim' => __( 'Yerleşim', 'kvkk-cerez' ),
-                    'butonlar' => __( 'Butonlar', 'kvkk-cerez' ),
-                    'yuzen'    => __( 'Yüzen tercih butonu', 'kvkk-cerez' ),
+                    'yerlesim' => __( 'Yerleşim', 'umay-cerez-yoneticisi' ),
+                    'butonlar' => __( 'Butonlar', 'umay-cerez-yoneticisi' ),
+                    'yuzen'    => __( 'Yüzen tercih butonu', 'umay-cerez-yoneticisi' ),
                 ),
                 'icon'     => '<rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 15h18"/>',
             ),
             'renk'        => array(
-                'label'    => __( 'Renk ve yazı', 'kvkk-cerez' ),
+                'label'    => __( 'Renk ve yazı', 'umay-cerez-yoneticisi' ),
                 'sections' => array(
-                    'renkler' => __( 'Renkler', 'kvkk-cerez' ),
-                    'yazi'    => __( 'Yazı ve köşeler', 'kvkk-cerez' ),
+                    'renkler' => __( 'Renkler', 'umay-cerez-yoneticisi' ),
+                    'yazi'    => __( 'Yazı ve köşeler', 'umay-cerez-yoneticisi' ),
                 ),
                 'icon'     => '<path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.8 1.6-1.6 0-.5-.2-.8-.4-1.1-.3-.3-.4-.6-.4-1 0-.9.7-1.6 1.6-1.6H16a5 5 0 0 0 5-5C21 6.5 17 3 12 3Z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="14.5" cy="7" r="1"/>',
             ),
             'metinler'    => array(
-                'label'    => __( 'Metinler', 'kvkk-cerez' ),
+                'label'    => __( 'Metinler', 'umay-cerez-yoneticisi' ),
                 'sections' => array(
-                    'banner'    => __( 'Çerez bandı', 'kvkk-cerez' ),
-                    'tercihler' => __( 'Tercihler penceresi', 'kvkk-cerez' ),
-                    'yertutucu' => __( 'Engellenen içerik', 'kvkk-cerez' ),
+                    'banner'    => __( 'Çerez bandı', 'umay-cerez-yoneticisi' ),
+                    'tercihler' => __( 'Tercihler penceresi', 'umay-cerez-yoneticisi' ),
+                    'yertutucu' => __( 'Engellenen içerik', 'umay-cerez-yoneticisi' ),
                 ),
                 'icon'     => '<path d="M5 6h14M5 11h14M5 16h9"/>',
             ),
             'kategoriler' => array(
-                'label'    => __( 'Kategoriler', 'kvkk-cerez' ),
+                'label'    => __( 'Kategoriler', 'umay-cerez-yoneticisi' ),
                 'sections' => array(
-                    'zorunlu'   => __( 'Zorunlu', 'kvkk-cerez' ),
-                    'islevsel'  => __( 'İşlevsel', 'kvkk-cerez' ),
-                    'analitik'  => __( 'Analitik', 'kvkk-cerez' ),
-                    'pazarlama' => __( 'Pazarlama', 'kvkk-cerez' ),
+                    'zorunlu'   => __( 'Zorunlu', 'umay-cerez-yoneticisi' ),
+                    'islevsel'  => __( 'İşlevsel', 'umay-cerez-yoneticisi' ),
+                    'analitik'  => __( 'Analitik', 'umay-cerez-yoneticisi' ),
+                    'pazarlama' => __( 'Pazarlama', 'umay-cerez-yoneticisi' ),
                 ),
                 'icon'     => '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>',
             ),
             'sayfalar'    => array(
-                'label'    => __( 'Yasal sayfalar', 'kvkk-cerez' ),
+                'label'    => __( 'Yasal sayfalar', 'umay-cerez-yoneticisi' ),
                 'sections' => array(
-                    'sayfalar' => __( 'Yasal metinler', 'kvkk-cerez' ),
+                    'sayfalar' => __( 'Yasal metinler', 'umay-cerez-yoneticisi' ),
                 ),
                 'icon'     => '<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>',
             ),
             'davranis'    => array(
-                'label'    => __( 'Davranış', 'kvkk-cerez' ),
+                'label'    => __( 'Davranış', 'umay-cerez-yoneticisi' ),
                 'sections' => array(
-                    'riza'        => __( 'Rıza', 'kvkk-cerez' ),
-                    'entegrasyon' => __( 'Google ve Tag Manager', 'kvkk-cerez' ),
+                    'riza'        => __( 'Rıza', 'umay-cerez-yoneticisi' ),
+                    'entegrasyon' => __( 'Google ve Tag Manager', 'umay-cerez-yoneticisi' ),
                 ),
                 'icon'     => '<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/>',
             ),
             'gelismis'    => array(
-                'label'    => __( 'Gelişmiş', 'kvkk-cerez' ),
+                'label'    => __( 'Gelişmiş', 'umay-cerez-yoneticisi' ),
                 'sections' => array(
-                    'kurallar' => __( 'Engelleme kuralları', 'kvkk-cerez' ),
-                    'kayit'    => __( 'Rıza kayıtları', 'kvkk-cerez' ),
-                    'stil'     => __( 'Özel CSS', 'kvkk-cerez' ),
+                    'kurallar' => __( 'Engelleme kuralları', 'umay-cerez-yoneticisi' ),
+                    'kayit'    => __( 'Rıza kayıtları', 'umay-cerez-yoneticisi' ),
+                    'stil'     => __( 'Özel CSS', 'umay-cerez-yoneticisi' ),
                 ),
                 'icon'     => '<path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/>',
             ),
@@ -198,12 +198,12 @@ class KVKKC_Admin {
         foreach ( kvkkc_categories() as $category ) {
             $category_fields[ 'cat_' . $category . '_name' ] = array(
                 'section' => $category,
-                'label'   => __( 'Başlık', 'kvkk-cerez' ),
+                'label'   => __( 'Başlık', 'umay-cerez-yoneticisi' ),
                 'type'    => 'text',
             );
             $category_fields[ 'cat_' . $category . '_desc' ] = array(
                 'section' => $category,
-                'label'   => __( 'Açıklama', 'kvkk-cerez' ),
+                'label'   => __( 'Açıklama', 'umay-cerez-yoneticisi' ),
                 'type'    => 'textarea',
                 'rows'    => 3,
             );
@@ -212,39 +212,39 @@ class KVKKC_Admin {
         $fields = array(
             'layout'           => array(
                 'section' => 'yerlesim',
-                'label'   => __( 'Bant tipi', 'kvkk-cerez' ),
+                'label'   => __( 'Bant tipi', 'umay-cerez-yoneticisi' ),
                 'type'    => 'choice',
                 'style'   => 'cards',
                 'options' => array(
-                    'bar'   => __( 'Şerit', 'kvkk-cerez' ),
-                    'card'  => __( 'Kart', 'kvkk-cerez' ),
-                    'modal' => __( 'Ortada pencere', 'kvkk-cerez' ),
+                    'bar'   => __( 'Şerit', 'umay-cerez-yoneticisi' ),
+                    'card'  => __( 'Kart', 'umay-cerez-yoneticisi' ),
+                    'modal' => __( 'Ortada pencere', 'umay-cerez-yoneticisi' ),
                 ),
             ),
             'bar_position'     => array(
                 'section' => 'yerlesim',
-                'label'   => __( 'Şerit konumu', 'kvkk-cerez' ),
+                'label'   => __( 'Şerit konumu', 'umay-cerez-yoneticisi' ),
                 'type'    => 'choice',
                 'show_if' => array( 'layout', 'bar' ),
                 'options' => array(
-                    'bottom' => __( 'Altta', 'kvkk-cerez' ),
-                    'top'    => __( 'Üstte', 'kvkk-cerez' ),
+                    'bottom' => __( 'Altta', 'umay-cerez-yoneticisi' ),
+                    'top'    => __( 'Üstte', 'umay-cerez-yoneticisi' ),
                 ),
             ),
             'card_position'    => array(
                 'section' => 'yerlesim',
-                'label'   => __( 'Kart konumu', 'kvkk-cerez' ),
+                'label'   => __( 'Kart konumu', 'umay-cerez-yoneticisi' ),
                 'type'    => 'choice',
                 'show_if' => array( 'layout', 'card' ),
                 'options' => array(
-                    'left'   => __( 'Sol alt', 'kvkk-cerez' ),
-                    'center' => __( 'Orta alt', 'kvkk-cerez' ),
-                    'right'  => __( 'Sağ alt', 'kvkk-cerez' ),
+                    'left'   => __( 'Sol alt', 'umay-cerez-yoneticisi' ),
+                    'center' => __( 'Orta alt', 'umay-cerez-yoneticisi' ),
+                    'right'  => __( 'Sağ alt', 'umay-cerez-yoneticisi' ),
                 ),
             ),
             'card_width'       => array(
                 'section' => 'yerlesim',
-                'label'   => __( 'Kart genişliği', 'kvkk-cerez' ),
+                'label'   => __( 'Kart genişliği', 'umay-cerez-yoneticisi' ),
                 'type'    => 'range',
                 'min'     => 320,
                 'max'     => 640,
@@ -254,148 +254,148 @@ class KVKKC_Admin {
             ),
             'overlay'          => array(
                 'section' => 'yerlesim',
-                'label'   => __( 'Arka plan', 'kvkk-cerez' ),
+                'label'   => __( 'Arka plan', 'umay-cerez-yoneticisi' ),
                 'type'    => 'choice',
                 'options' => array(
-                    'none' => __( 'Yok', 'kvkk-cerez' ),
-                    'dim'  => __( 'Karart', 'kvkk-cerez' ),
-                    'blur' => __( 'Karart ve bulanıklaştır', 'kvkk-cerez' ),
+                    'none' => __( 'Yok', 'umay-cerez-yoneticisi' ),
+                    'dim'  => __( 'Karart', 'umay-cerez-yoneticisi' ),
+                    'blur' => __( 'Karart ve bulanıklaştır', 'umay-cerez-yoneticisi' ),
                 ),
             ),
             'lock_scroll'      => array(
                 'section' => 'yerlesim',
-                'label'   => __( 'Sayfa kilidi', 'kvkk-cerez' ),
+                'label'   => __( 'Sayfa kilidi', 'umay-cerez-yoneticisi' ),
                 'type'    => 'checkbox',
-                'text'    => __( 'Seçim yapılana kadar sayfa kaydırılamasın', 'kvkk-cerez' ),
-                'desc'    => __( 'Reddet butonu her zaman görünür kalır; ziyaretçi tek tıkla siteye devam edebilir.', 'kvkk-cerez' ),
+                'text'    => __( 'Seçim yapılana kadar sayfa kaydırılamasın', 'umay-cerez-yoneticisi' ),
+                'desc'    => __( 'Reddet butonu her zaman görünür kalır; ziyaretçi tek tıkla siteye devam edebilir.', 'umay-cerez-yoneticisi' ),
             ),
             'animation'        => array(
                 'section' => 'yerlesim',
-                'label'   => __( 'Açılış animasyonu', 'kvkk-cerez' ),
+                'label'   => __( 'Açılış animasyonu', 'umay-cerez-yoneticisi' ),
                 'type'    => 'choice',
                 'options' => array(
-                    'none'  => __( 'Yok', 'kvkk-cerez' ),
-                    'fade'  => __( 'Belirme', 'kvkk-cerez' ),
-                    'slide' => __( 'Kayma', 'kvkk-cerez' ),
+                    'none'  => __( 'Yok', 'umay-cerez-yoneticisi' ),
+                    'fade'  => __( 'Belirme', 'umay-cerez-yoneticisi' ),
+                    'slide' => __( 'Kayma', 'umay-cerez-yoneticisi' ),
                 ),
-                'desc'    => __( 'Hareketi azaltmayı seçen ziyaretçilerde animasyon kendiliğinden kapanır.', 'kvkk-cerez' ),
+                'desc'    => __( 'Hareketi azaltmayı seçen ziyaretçilerde animasyon kendiliğinden kapanır.', 'umay-cerez-yoneticisi' ),
             ),
             'logo'             => array(
                 'section' => 'yerlesim',
-                'label'   => __( 'Logo', 'kvkk-cerez' ),
+                'label'   => __( 'Logo', 'umay-cerez-yoneticisi' ),
                 'type'    => 'media',
             ),
             'button_order'     => array(
                 'section' => 'butonlar',
-                'label'   => __( 'Buton sırası', 'kvkk-cerez' ),
+                'label'   => __( 'Buton sırası', 'umay-cerez-yoneticisi' ),
                 'type'    => 'choice',
                 'options' => array(
-                    'accept_first' => __( 'Önce Kabul Et', 'kvkk-cerez' ),
-                    'reject_first' => __( 'Önce Reddet', 'kvkk-cerez' ),
+                    'accept_first' => __( 'Önce Kabul Et', 'umay-cerez-yoneticisi' ),
+                    'reject_first' => __( 'Önce Reddet', 'umay-cerez-yoneticisi' ),
                 ),
             ),
             'prefs_style'      => array(
                 'section' => 'butonlar',
-                'label'   => __( 'Ayarlar butonu', 'kvkk-cerez' ),
+                'label'   => __( 'Ayarlar butonu', 'umay-cerez-yoneticisi' ),
                 'type'    => 'choice',
                 'options' => array(
-                    'equal'   => __( 'Diğerleriyle aynı', 'kvkk-cerez' ),
-                    'outline' => __( 'Çerçeveli', 'kvkk-cerez' ),
+                    'equal'   => __( 'Diğerleriyle aynı', 'umay-cerez-yoneticisi' ),
+                    'outline' => __( 'Çerçeveli', 'umay-cerez-yoneticisi' ),
                 ),
-                'desc'    => __( 'Rehber, kabul, ret ve tercih butonlarının renk, boyut ve punto açısından eşit sunulmasını iyi uygulama olarak gösterir. Kabul ve Reddet butonları her durumda aynı görünür.', 'kvkk-cerez' ),
+                'desc'    => __( 'Rehber, kabul, ret ve tercih butonlarının renk, boyut ve punto açısından eşit sunulmasını iyi uygulama olarak gösterir. Kabul ve Reddet butonları her durumda aynı görünür.', 'umay-cerez-yoneticisi' ),
             ),
             'show_categories'  => array(
                 'section' => 'butonlar',
-                'label'   => __( 'Hızlı seçim', 'kvkk-cerez' ),
+                'label'   => __( 'Hızlı seçim', 'umay-cerez-yoneticisi' ),
                 'type'    => 'checkbox',
-                'text'    => __( 'Kategori anahtarlarını bantta da göster', 'kvkk-cerez' ),
+                'text'    => __( 'Kategori anahtarlarını bantta da göster', 'umay-cerez-yoneticisi' ),
             ),
             'float_enabled'    => array(
                 'section' => 'yuzen',
-                'label'   => __( 'Yüzen buton', 'kvkk-cerez' ),
+                'label'   => __( 'Yüzen buton', 'umay-cerez-yoneticisi' ),
                 'type'    => 'checkbox',
-                'text'    => __( 'Seçim yapıldıktan sonra köşede çerez ayarları butonu göster', 'kvkk-cerez' ),
-                'desc'    => __( 'Rehber, verilen iznin kolayca geri alınabilmesi için sayfanın köşesinde kalıcı bir simge önerir. Kapatırsanız [kvkk_cerez_ayarlari] kısa kodunu alt bilgiye ekleyin.', 'kvkk-cerez' ),
+                'text'    => __( 'Seçim yapıldıktan sonra köşede çerez ayarları butonu göster', 'umay-cerez-yoneticisi' ),
+                'desc'    => __( 'Rehber, verilen iznin kolayca geri alınabilmesi için sayfanın köşesinde kalıcı bir simge önerir. Kapatırsanız [kvkk_cerez_ayarlari] kısa kodunu alt bilgiye ekleyin.', 'umay-cerez-yoneticisi' ),
             ),
             'float_position'   => array(
                 'section' => 'yuzen',
-                'label'   => __( 'Konum', 'kvkk-cerez' ),
+                'label'   => __( 'Konum', 'umay-cerez-yoneticisi' ),
                 'type'    => 'choice',
                 'options' => array(
-                    'left'  => __( 'Sol alt', 'kvkk-cerez' ),
-                    'right' => __( 'Sağ alt', 'kvkk-cerez' ),
+                    'left'  => __( 'Sol alt', 'umay-cerez-yoneticisi' ),
+                    'right' => __( 'Sağ alt', 'umay-cerez-yoneticisi' ),
                 ),
             ),
             'float_icon'       => array(
                 'section' => 'yuzen',
-                'label'   => __( 'Simge', 'kvkk-cerez' ),
+                'label'   => __( 'Simge', 'umay-cerez-yoneticisi' ),
                 'type'    => 'choice',
                 'style'   => 'icons',
                 'options' => array(
-                    'cookie'      => __( 'Kurabiye', 'kvkk-cerez' ),
-                    'fingerprint' => __( 'Parmak izi', 'kvkk-cerez' ),
-                    'shield'      => __( 'Kalkan', 'kvkk-cerez' ),
+                    'cookie'      => __( 'Kurabiye', 'umay-cerez-yoneticisi' ),
+                    'fingerprint' => __( 'Parmak izi', 'umay-cerez-yoneticisi' ),
+                    'shield'      => __( 'Kalkan', 'umay-cerez-yoneticisi' ),
                 ),
             ),
             'float_label'      => array(
                 'section' => 'yuzen',
-                'label'   => __( 'Erişilebilir ad', 'kvkk-cerez' ),
+                'label'   => __( 'Erişilebilir ad', 'umay-cerez-yoneticisi' ),
                 'type'    => 'text',
-                'desc'    => __( 'Ekran okuyucuların okuduğu ve fareyle üzerine gelince görünen metin.', 'kvkk-cerez' ),
+                'desc'    => __( 'Ekran okuyucuların okuduğu ve fareyle üzerine gelince görünen metin.', 'umay-cerez-yoneticisi' ),
             ),
             'color_bg'         => array(
                 'section' => 'renkler',
-                'label'   => __( 'Zemin', 'kvkk-cerez' ),
+                'label'   => __( 'Zemin', 'umay-cerez-yoneticisi' ),
                 'type'    => 'color',
             ),
             'color_text'       => array(
                 'section' => 'renkler',
-                'label'   => __( 'Metin', 'kvkk-cerez' ),
+                'label'   => __( 'Metin', 'umay-cerez-yoneticisi' ),
                 'type'    => 'color',
             ),
             'color_link'       => array(
                 'section' => 'renkler',
-                'label'   => __( 'Bağlantı', 'kvkk-cerez' ),
+                'label'   => __( 'Bağlantı', 'umay-cerez-yoneticisi' ),
                 'type'    => 'color',
             ),
             'color_btn_bg'     => array(
                 'section' => 'renkler',
-                'label'   => __( 'Buton zemini', 'kvkk-cerez' ),
+                'label'   => __( 'Buton zemini', 'umay-cerez-yoneticisi' ),
                 'type'    => 'color',
             ),
             'color_btn_text'   => array(
                 'section' => 'renkler',
-                'label'   => __( 'Buton metni', 'kvkk-cerez' ),
+                'label'   => __( 'Buton metni', 'umay-cerez-yoneticisi' ),
                 'type'    => 'color',
             ),
             'color_accent'     => array(
                 'section' => 'renkler',
-                'label'   => __( 'Açık anahtar', 'kvkk-cerez' ),
+                'label'   => __( 'Açık anahtar', 'umay-cerez-yoneticisi' ),
                 'type'    => 'color',
             ),
             'color_border'     => array(
                 'section' => 'renkler',
-                'label'   => __( 'Kenarlık', 'kvkk-cerez' ),
+                'label'   => __( 'Kenarlık', 'umay-cerez-yoneticisi' ),
                 'type'    => 'color',
             ),
             'auto_dark'        => array(
                 'section' => 'renkler',
-                'label'   => __( 'Koyu mod', 'kvkk-cerez' ),
+                'label'   => __( 'Koyu mod', 'umay-cerez-yoneticisi' ),
                 'type'    => 'checkbox',
-                'text'    => __( 'Ziyaretçinin cihazı koyu moddaysa koyu renkleri kullan', 'kvkk-cerez' ),
+                'text'    => __( 'Ziyaretçinin cihazı koyu moddaysa koyu renkleri kullan', 'umay-cerez-yoneticisi' ),
             ),
             'font'             => array(
                 'section' => 'yazi',
-                'label'   => __( 'Yazı tipi', 'kvkk-cerez' ),
+                'label'   => __( 'Yazı tipi', 'umay-cerez-yoneticisi' ),
                 'type'    => 'choice',
                 'options' => array(
-                    'inherit' => __( 'Sitenin yazı tipi', 'kvkk-cerez' ),
-                    'system'  => __( 'Cihazın yazı tipi', 'kvkk-cerez' ),
+                    'inherit' => __( 'Sitenin yazı tipi', 'umay-cerez-yoneticisi' ),
+                    'system'  => __( 'Cihazın yazı tipi', 'umay-cerez-yoneticisi' ),
                 ),
             ),
             'font_size'        => array(
                 'section' => 'yazi',
-                'label'   => __( 'Yazı boyutu', 'kvkk-cerez' ),
+                'label'   => __( 'Yazı boyutu', 'umay-cerez-yoneticisi' ),
                 'type'    => 'range',
                 'min'     => 12,
                 'max'     => 18,
@@ -403,7 +403,7 @@ class KVKKC_Admin {
             ),
             'radius'           => array(
                 'section' => 'yazi',
-                'label'   => __( 'Bant köşesi', 'kvkk-cerez' ),
+                'label'   => __( 'Bant köşesi', 'umay-cerez-yoneticisi' ),
                 'type'    => 'range',
                 'min'     => 0,
                 'max'     => 28,
@@ -411,7 +411,7 @@ class KVKKC_Admin {
             ),
             'btn_radius'       => array(
                 'section' => 'yazi',
-                'label'   => __( 'Buton köşesi', 'kvkk-cerez' ),
+                'label'   => __( 'Buton köşesi', 'umay-cerez-yoneticisi' ),
                 'type'    => 'range',
                 'min'     => 0,
                 'max'     => 28,
@@ -419,67 +419,67 @@ class KVKKC_Admin {
             ),
             'shadow'           => array(
                 'section' => 'yazi',
-                'label'   => __( 'Gölge', 'kvkk-cerez' ),
+                'label'   => __( 'Gölge', 'umay-cerez-yoneticisi' ),
                 'type'    => 'checkbox',
-                'text'    => __( 'Banda yumuşak gölge ver', 'kvkk-cerez' ),
+                'text'    => __( 'Banda yumuşak gölge ver', 'umay-cerez-yoneticisi' ),
             ),
             'title'            => array(
                 'section' => 'banner',
-                'label'   => __( 'Başlık', 'kvkk-cerez' ),
+                'label'   => __( 'Başlık', 'umay-cerez-yoneticisi' ),
                 'type'    => 'text',
             ),
             'message'          => array(
                 'section' => 'banner',
-                'label'   => __( 'Bilgilendirme metni', 'kvkk-cerez' ),
+                'label'   => __( 'Bilgilendirme metni', 'umay-cerez-yoneticisi' ),
                 'type'    => 'html',
                 'rows'    => 6,
-                'desc'    => __( 'Rehber, ilk ekranda çerezlerin amaçlarının (analitik, reklam, kişiselleştirme) ve taraflarının (birinci, üçüncü taraf) kısaca belirtilmesini önerir. Bağlantı için <a> etiketi kullanılabilir; yasal sayfalara bağlantılar metnin altına kendiliğinden eklenir.', 'kvkk-cerez' ),
+                'desc'    => __( 'Rehber, ilk ekranda çerezlerin amaçlarının (analitik, reklam, kişiselleştirme) ve taraflarının (birinci, üçüncü taraf) kısaca belirtilmesini önerir. Bağlantı için <a> etiketi kullanılabilir; yasal sayfalara bağlantılar metnin altına kendiliğinden eklenir.', 'umay-cerez-yoneticisi' ),
             ),
             'btn_accept'       => array(
                 'section' => 'banner',
-                'label'   => __( 'Kabul butonu', 'kvkk-cerez' ),
+                'label'   => __( 'Kabul butonu', 'umay-cerez-yoneticisi' ),
                 'type'    => 'text',
             ),
             'btn_reject'       => array(
                 'section' => 'banner',
-                'label'   => __( 'Ret butonu', 'kvkk-cerez' ),
+                'label'   => __( 'Ret butonu', 'umay-cerez-yoneticisi' ),
                 'type'    => 'text',
             ),
             'btn_prefs'        => array(
                 'section' => 'banner',
-                'label'   => __( 'Ayarlar butonu', 'kvkk-cerez' ),
+                'label'   => __( 'Ayarlar butonu', 'umay-cerez-yoneticisi' ),
                 'type'    => 'text',
             ),
             'prefs_title'      => array(
                 'section' => 'tercihler',
-                'label'   => __( 'Başlık', 'kvkk-cerez' ),
+                'label'   => __( 'Başlık', 'umay-cerez-yoneticisi' ),
                 'type'    => 'text',
             ),
             'prefs_intro'      => array(
                 'section' => 'tercihler',
-                'label'   => __( 'Giriş metni', 'kvkk-cerez' ),
+                'label'   => __( 'Giriş metni', 'umay-cerez-yoneticisi' ),
                 'type'    => 'html',
                 'rows'    => 4,
             ),
             'btn_save'         => array(
                 'section' => 'tercihler',
-                'label'   => __( 'Kaydet butonu', 'kvkk-cerez' ),
+                'label'   => __( 'Kaydet butonu', 'umay-cerez-yoneticisi' ),
                 'type'    => 'text',
             ),
             'always_active'    => array(
                 'section' => 'tercihler',
-                'label'   => __( 'Zorunlu kategori etiketi', 'kvkk-cerez' ),
+                'label'   => __( 'Zorunlu kategori etiketi', 'umay-cerez-yoneticisi' ),
                 'type'    => 'text',
             ),
             'placeholder_text' => array(
                 'section' => 'yertutucu',
-                'label'   => __( 'Açıklama', 'kvkk-cerez' ),
+                'label'   => __( 'Açıklama', 'umay-cerez-yoneticisi' ),
                 'type'    => 'text',
-                'desc'    => __( 'Rıza verilmeden engellenen video ve haritaların yerinde görünür. {kategori} ifadesi kategori adıyla değiştirilir.', 'kvkk-cerez' ),
+                'desc'    => __( 'Rıza verilmeden engellenen video ve haritaların yerinde görünür. {kategori} ifadesi kategori adıyla değiştirilir.', 'umay-cerez-yoneticisi' ),
             ),
             'placeholder_btn'  => array(
                 'section' => 'yertutucu',
-                'label'   => __( 'Buton', 'kvkk-cerez' ),
+                'label'   => __( 'Buton', 'umay-cerez-yoneticisi' ),
                 'type'    => 'text',
             ),
         );
@@ -489,111 +489,111 @@ class KVKKC_Admin {
         $fields += array(
             'page_aydinlatma'     => array(
                 'section' => 'sayfalar',
-                'label'   => __( 'KVKK Aydınlatma Metni', 'kvkk-cerez' ),
+                'label'   => __( 'KVKK Aydınlatma Metni', 'umay-cerez-yoneticisi' ),
                 'type'    => 'url',
-                'desc'    => __( 'Bantta ve tercihler penceresinde gösterilir.', 'kvkk-cerez' ),
+                'desc'    => __( 'Bantta ve tercihler penceresinde gösterilir.', 'umay-cerez-yoneticisi' ),
             ),
             'page_cerez'          => array(
                 'section' => 'sayfalar',
-                'label'   => __( 'Çerez Politikası', 'kvkk-cerez' ),
+                'label'   => __( 'Çerez Politikası', 'umay-cerez-yoneticisi' ),
                 'type'    => 'url',
-                'desc'    => __( 'Bantta ve tercihler penceresinde gösterilir. Çerez tablosu için bu sayfaya [kvkk_cerez_tablosu] kısa kodunu ekleyin.', 'kvkk-cerez' ),
+                'desc'    => __( 'Bantta ve tercihler penceresinde gösterilir. Çerez tablosu için bu sayfaya [kvkk_cerez_tablosu] kısa kodunu ekleyin.', 'umay-cerez-yoneticisi' ),
             ),
             'page_gizlilik'       => array(
                 'section' => 'sayfalar',
-                'label'   => __( 'Gizlilik Politikası', 'kvkk-cerez' ),
+                'label'   => __( 'Gizlilik Politikası', 'umay-cerez-yoneticisi' ),
                 'type'    => 'url',
-                'desc'    => __( 'Tercihler penceresinde gösterilir.', 'kvkk-cerez' ),
+                'desc'    => __( 'Tercihler penceresinde gösterilir.', 'umay-cerez-yoneticisi' ),
             ),
             'page_acik_riza'      => array(
                 'section' => 'sayfalar',
-                'label'   => __( 'Açık Rıza Metni', 'kvkk-cerez' ),
+                'label'   => __( 'Açık Rıza Metni', 'umay-cerez-yoneticisi' ),
                 'type'    => 'url',
-                'desc'    => __( 'Tercihler penceresinde gösterilir.', 'kvkk-cerez' ),
+                'desc'    => __( 'Tercihler penceresinde gösterilir.', 'umay-cerez-yoneticisi' ),
             ),
             'consent_days'        => array(
                 'section' => 'riza',
-                'label'   => __( 'Tercihin geçerlilik süresi', 'kvkk-cerez' ),
+                'label'   => __( 'Tercihin geçerlilik süresi', 'umay-cerez-yoneticisi' ),
                 'type'    => 'number',
                 'min'     => 30,
                 'max'     => 395,
-                'unit'    => __( 'gün', 'kvkk-cerez' ),
-                'desc'    => __( 'Süre dolunca tercih yeniden sorulur. Rehber, hatırlatmanın çerez ömrüyle orantılı olmasını önerir; örneklerinde 365 gün kullanılır.', 'kvkk-cerez' ),
+                'unit'    => __( 'gün', 'umay-cerez-yoneticisi' ),
+                'desc'    => __( 'Süre dolunca tercih yeniden sorulur. Rehber, hatırlatmanın çerez ömrüyle orantılı olmasını önerir; örneklerinde 365 gün kullanılır.', 'umay-cerez-yoneticisi' ),
             ),
             'reload_on_withdraw'  => array(
                 'section' => 'riza',
-                'label'   => __( 'İzin geri alınınca', 'kvkk-cerez' ),
+                'label'   => __( 'İzin geri alınınca', 'umay-cerez-yoneticisi' ),
                 'type'    => 'checkbox',
-                'text'    => __( 'Kapatılan kategorinin çerezlerini sil ve sayfayı yenile', 'kvkk-cerez' ),
-                'desc'    => __( 'Çalışmaya başlamış bir izleme kodu ancak sayfa yenilenince tamamen durur.', 'kvkk-cerez' ),
+                'text'    => __( 'Kapatılan kategorinin çerezlerini sil ve sayfayı yenile', 'umay-cerez-yoneticisi' ),
+                'desc'    => __( 'Çalışmaya başlamış bir izleme kodu ancak sayfa yenilenince tamamen durur.', 'umay-cerez-yoneticisi' ),
             ),
             'block_enabled'       => array(
                 'section' => 'riza',
-                'label'   => __( 'Otomatik engelleme', 'kvkk-cerez' ),
+                'label'   => __( 'Otomatik engelleme', 'umay-cerez-yoneticisi' ),
                 'type'    => 'checkbox',
-                'text'    => __( 'İzin verilmeyen kategorilerin kodlarını sayfa yüklenmeden engelle', 'kvkk-cerez' ),
-                'desc'    => __( 'Kapatırsanız izleme kodları ziyaretçi seçim yapmadan çalışır. Yalnızca sorun ararken kısa süreliğine kapatın.', 'kvkk-cerez' ),
+                'text'    => __( 'İzin verilmeyen kategorilerin kodlarını sayfa yüklenmeden engelle', 'umay-cerez-yoneticisi' ),
+                'desc'    => __( 'Kapatırsanız izleme kodları ziyaretçi seçim yapmadan çalışır. Yalnızca sorun ararken kısa süreliğine kapatın.', 'umay-cerez-yoneticisi' ),
             ),
             'consent_mode'        => array(
                 'section' => 'entegrasyon',
-                'label'   => __( 'Google İzin Modu v2', 'kvkk-cerez' ),
+                'label'   => __( 'Google İzin Modu v2', 'umay-cerez-yoneticisi' ),
                 'type'    => 'checkbox',
-                'text'    => __( 'Google etiketlerine izin durumunu bildir (Consent Mode)', 'kvkk-cerez' ),
-                'desc'    => __( 'Sayfa başında tüm izinler "reddedildi" olarak bildirilir, ziyaretçinin seçimiyle güncellenir.', 'kvkk-cerez' ),
+                'text'    => __( 'Google etiketlerine izin durumunu bildir (Consent Mode)', 'umay-cerez-yoneticisi' ),
+                'desc'    => __( 'Sayfa başında tüm izinler "reddedildi" olarak bildirilir, ziyaretçinin seçimiyle güncellenir.', 'umay-cerez-yoneticisi' ),
             ),
             'gtm_event'           => array(
                 'section' => 'entegrasyon',
-                'label'   => __( 'Tag Manager olayı', 'kvkk-cerez' ),
+                'label'   => __( 'Tag Manager olayı', 'umay-cerez-yoneticisi' ),
                 'type'    => 'checkbox',
-                'text'    => __( 'Her seçimde dataLayer\'a kvkkc_consent olayı gönder', 'kvkk-cerez' ),
-                'desc'    => __( 'GTM içindeki Google dışı etiketleri bu olay ve kvkkc_analitik, kvkkc_pazarlama değişkenleriyle tetikleyin.', 'kvkk-cerez' ),
+                'text'    => __( 'Her seçimde dataLayer\'a kvkkc_consent olayı gönder', 'umay-cerez-yoneticisi' ),
+                'desc'    => __( 'GTM içindeki Google dışı etiketleri bu olay ve kvkkc_analitik, kvkkc_pazarlama değişkenleriyle tetikleyin.', 'umay-cerez-yoneticisi' ),
             ),
             'rules'               => array(
                 'section'     => 'kurallar',
-                'label'       => __( 'Elle kurallar', 'kvkk-cerez' ),
+                'label'       => __( 'Elle kurallar', 'umay-cerez-yoneticisi' ),
                 'type'        => 'rules',
                 'rows'        => 6,
                 'placeholder' => "ornek-izleme.com|pazarlama\ncdn.ornek.com/widget.js|islevsel",
-                'desc'        => __( 'Her satıra "adres veya kod parçası|kategori" yazın. Kategori: zorunlu, islevsel, analitik, pazarlama. "zorunlu" yazılan bir kural o kodu engellemeden çıkarır.', 'kvkk-cerez' ),
+                'desc'        => __( 'Her satıra "adres veya kod parçası|kategori" yazın. Kategori: zorunlu, islevsel, analitik, pazarlama. "zorunlu" yazılan bir kural o kodu engellemeden çıkarır.', 'umay-cerez-yoneticisi' ),
             ),
             'z_index'             => array(
                 'section' => 'kurallar',
-                'label'   => __( 'Katman sırası (z-index)', 'kvkk-cerez' ),
+                'label'   => __( 'Katman sırası (z-index)', 'umay-cerez-yoneticisi' ),
                 'type'    => 'number',
                 'min'     => 1,
                 'max'     => 2147483647,
-                'desc'    => __( 'Bant temanın sabit menüsünün altında kalıyorsa artırın.', 'kvkk-cerez' ),
+                'desc'    => __( 'Bant temanın sabit menüsünün altında kalıyorsa artırın.', 'umay-cerez-yoneticisi' ),
             ),
             'store_ip_hash'       => array(
                 'section' => 'kayit',
-                'label'   => __( 'IP özeti', 'kvkk-cerez' ),
+                'label'   => __( 'IP özeti', 'umay-cerez-yoneticisi' ),
                 'type'    => 'checkbox',
-                'text'    => __( 'Kırpılmış IP adresinin tek yönlü özetini kaydet', 'kvkk-cerez' ),
-                'desc'    => __( 'Ham IP ve tarayıcı bilgisi hiçbir durumda saklanmaz. Özet, bir rızanın hangi ağdan verildiğini doğrulamaya yeter.', 'kvkk-cerez' ),
+                'text'    => __( 'Kırpılmış IP adresinin tek yönlü özetini kaydet', 'umay-cerez-yoneticisi' ),
+                'desc'    => __( 'Ham IP ve tarayıcı bilgisi hiçbir durumda saklanmaz. Özet, bir rızanın hangi ağdan verildiğini doğrulamaya yeter.', 'umay-cerez-yoneticisi' ),
             ),
             'retention_months'    => array(
                 'section' => 'kayit',
-                'label'   => __( 'Saklama süresi', 'kvkk-cerez' ),
+                'label'   => __( 'Saklama süresi', 'umay-cerez-yoneticisi' ),
                 'type'    => 'number',
                 'min'     => 1,
                 'max'     => 120,
-                'unit'    => __( 'ay', 'kvkk-cerez' ),
-                'desc'    => __( 'Süresi dolan kayıtlar her gün otomatik silinir.', 'kvkk-cerez' ),
+                'unit'    => __( 'ay', 'umay-cerez-yoneticisi' ),
+                'desc'    => __( 'Süresi dolan kayıtlar her gün otomatik silinir.', 'umay-cerez-yoneticisi' ),
             ),
             'delete_on_uninstall' => array(
                 'section' => 'kayit',
-                'label'   => __( 'Eklenti silinince', 'kvkk-cerez' ),
+                'label'   => __( 'Eklenti silinince', 'umay-cerez-yoneticisi' ),
                 'type'    => 'checkbox',
-                'text'    => __( 'Rıza kayıtlarını da sil', 'kvkk-cerez' ),
-                'desc'    => __( 'Kapalıyken eklenti silinse bile kayıtlar ispat için veritabanında kalır.', 'kvkk-cerez' ),
+                'text'    => __( 'Rıza kayıtlarını da sil', 'umay-cerez-yoneticisi' ),
+                'desc'    => __( 'Kapalıyken eklenti silinse bile kayıtlar ispat için veritabanında kalır.', 'umay-cerez-yoneticisi' ),
             ),
             'custom_css'          => array(
                 'section'     => 'stil',
-                'label'       => __( 'Özel CSS', 'kvkk-cerez' ),
+                'label'       => __( 'Özel CSS', 'umay-cerez-yoneticisi' ),
                 'type'        => 'css',
                 'rows'        => 8,
                 'placeholder' => '.kvkkc .kvkkc-title { letter-spacing: .02em; }',
-                'desc'        => __( 'Bandın tüm öğeleri .kvkkc ile başlayan sınıflar taşır. Tema stillerini geçmek için seçicilere .kvkkc ile başlayın.', 'kvkk-cerez' ),
+                'desc'        => __( 'Bandın tüm öğeleri .kvkkc ile başlayan sınıflar taşır. Tema stillerini geçmek için seçicilere .kvkkc ile başlayın.', 'umay-cerez-yoneticisi' ),
             ),
         );
 
@@ -740,49 +740,49 @@ class KVKKC_Admin {
         return array(
             array(
                 'state' => 'ok',
-                'text'  => __( 'Kabul ve Reddet aynı renk, boyut ve puntoda', 'kvkk-cerez' ),
+                'text'  => __( 'Kabul ve Reddet aynı renk, boyut ve puntoda', 'umay-cerez-yoneticisi' ),
                 'ref'   => self::page_ref( 30 ),
             ),
             array(
                 'state' => 'equal' === $s['prefs_style'] ? 'ok' : 'warn',
-                'text'  => 'equal' === $s['prefs_style'] ? __( 'Ayarlar butonu da eşit sunuluyor', 'kvkk-cerez' ) : __( 'Ayarlar butonu diğerlerinden farklı görünüyor', 'kvkk-cerez' ),
+                'text'  => 'equal' === $s['prefs_style'] ? __( 'Ayarlar butonu da eşit sunuluyor', 'umay-cerez-yoneticisi' ) : __( 'Ayarlar butonu diğerlerinden farklı görünüyor', 'umay-cerez-yoneticisi' ),
                 'ref'   => self::page_ref( 30 ),
             ),
             array(
                 'state' => 'ok',
-                'text'  => __( 'Kategoriler ön işaretsiz, zorunlu dışındakiler kapalı başlar', 'kvkk-cerez' ),
+                'text'  => __( 'Kategoriler ön işaretsiz, zorunlu dışındakiler kapalı başlar', 'umay-cerez-yoneticisi' ),
                 'ref'   => self::page_ref( 31 ),
             ),
             array(
                 'state' => $s['block_enabled'] ? 'ok' : 'fail',
-                'text'  => $s['block_enabled'] ? __( 'Kodlar izin verilene kadar engelleniyor', 'kvkk-cerez' ) : __( 'Otomatik engelleme kapalı: çerezler izinsiz yerleşir', 'kvkk-cerez' ),
+                'text'  => $s['block_enabled'] ? __( 'Kodlar izin verilene kadar engelleniyor', 'umay-cerez-yoneticisi' ) : __( 'Otomatik engelleme kapalı: çerezler izinsiz yerleşir', 'umay-cerez-yoneticisi' ),
                 'ref'   => self::page_ref( 29 ),
             ),
             array(
                 'state' => '' !== $s['page_aydinlatma'] && '' !== $s['page_cerez'] ? 'ok' : 'fail',
-                'text'  => '' !== $s['page_aydinlatma'] && '' !== $s['page_cerez'] ? __( 'Aydınlatma metni ve çerez politikası bağlı', 'kvkk-cerez' ) : __( 'Aydınlatma metni veya çerez politikası seçilmedi', 'kvkk-cerez' ),
+                'text'  => '' !== $s['page_aydinlatma'] && '' !== $s['page_cerez'] ? __( 'Aydınlatma metni ve çerez politikası bağlı', 'umay-cerez-yoneticisi' ) : __( 'Aydınlatma metni veya çerez politikası seçilmedi', 'umay-cerez-yoneticisi' ),
                 'ref'   => self::page_ref( 30 ),
             ),
             array(
                 'state' => $s['float_enabled'] ? 'ok' : 'warn',
-                'text'  => $s['float_enabled'] ? __( 'Tercih köşedeki simgeden her an değiştirilebilir', 'kvkk-cerez' ) : __( 'Yüzen buton kapalı: kısa kodu alt bilgiye eklediğinizden emin olun', 'kvkk-cerez' ),
+                'text'  => $s['float_enabled'] ? __( 'Tercih köşedeki simgeden her an değiştirilebilir', 'umay-cerez-yoneticisi' ) : __( 'Yüzen buton kapalı: kısa kodu alt bilgiye eklediğinizden emin olun', 'umay-cerez-yoneticisi' ),
                 'ref'   => self::page_ref( 29 ),
             ),
             array(
                 'state' => $s['consent_days'] <= 365 ? 'ok' : 'warn',
                 /* translators: %d: gün sayısı */
-                'text'  => sprintf( __( 'Tercih %d günde bir yeniden soruluyor', 'kvkk-cerez' ), $s['consent_days'] ),
+                'text'  => sprintf( __( 'Tercih %d günde bir yeniden soruluyor', 'umay-cerez-yoneticisi' ), $s['consent_days'] ),
                 'ref'   => self::page_ref( 30 ),
             ),
             array(
                 'state' => min( $contrast_text, $contrast_btn ) >= 4.5 ? 'ok' : 'warn',
                 /* translators: %s: kontrast oranı */
-                'text'  => sprintf( __( 'Metin kontrastı %s:1', 'kvkk-cerez' ), number_format_i18n( min( $contrast_text, $contrast_btn ), 1 ) ),
+                'text'  => sprintf( __( 'Metin kontrastı %s:1', 'umay-cerez-yoneticisi' ), number_format_i18n( min( $contrast_text, $contrast_btn ), 1 ) ),
                 'ref'   => 'WCAG',
             ),
             array(
                 'state' => ! empty( $scan['time'] ) ? 'ok' : 'warn',
-                'text'  => ! empty( $scan['time'] ) ? __( 'Site taranmış, çerez listesi hazır', 'kvkk-cerez' ) : __( 'Site henüz taranmadı', 'kvkk-cerez' ),
+                'text'  => ! empty( $scan['time'] ) ? __( 'Site taranmış, çerez listesi hazır', 'umay-cerez-yoneticisi' ) : __( 'Site henüz taranmadı', 'umay-cerez-yoneticisi' ),
                 'ref'   => 'EK-4',
             ),
         );
@@ -796,7 +796,7 @@ class KVKKC_Admin {
      */
     private static function page_ref( $page ) {
         /* translators: %d: KVKK Çerez Rehberi'ndeki sayfa numarası */
-        return sprintf( __( 's. %d', 'kvkk-cerez' ), $page );
+        return sprintf( __( 's. %d', 'umay-cerez-yoneticisi' ), $page );
     }
 
     /**
@@ -868,7 +868,7 @@ class KVKKC_Admin {
     public function save_inventory() {
         check_admin_referer( 'kvkkc_inventory' );
         if ( ! current_user_can( 'manage_options' ) ) {
-            wp_die( esc_html__( 'Yetkiniz yok.', 'kvkk-cerez' ), 403 );
+            wp_die( esc_html__( 'Yetkiniz yok.', 'umay-cerez-yoneticisi' ), 403 );
         }
 
         $raw = isset( $_POST['inventory'] ) && is_array( $_POST['inventory'] ) ? wp_unslash( $_POST['inventory'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- sanitize_inventory() ile temizlenir.
@@ -886,7 +886,7 @@ class KVKKC_Admin {
     public function add_services() {
         check_admin_referer( 'kvkkc_add_services' );
         if ( ! current_user_can( 'manage_options' ) ) {
-            wp_die( esc_html__( 'Yetkiniz yok.', 'kvkk-cerez' ), 403 );
+            wp_die( esc_html__( 'Yetkiniz yok.', 'umay-cerez-yoneticisi' ), 403 );
         }
 
         $inventory = KVKKC_Services::inventory();
@@ -895,7 +895,7 @@ class KVKKC_Admin {
         foreach ( $ids as $id ) {
             if ( 'ozel' === $id ) {
                 $inventory[ 'ozel-' . strtolower( wp_generate_password( 6, false ) ) ] = array(
-                    'name'     => __( 'Yeni hizmet', 'kvkk-cerez' ),
+                    'name'     => __( 'Yeni hizmet', 'umay-cerez-yoneticisi' ),
                     'category' => 'islevsel',
                     'party'    => 3,
                 );
@@ -914,7 +914,7 @@ class KVKKC_Admin {
             if ( ! isset( $inventory[ $key ] ) ) {
                 $inventory[ $key ] = array(
                     /* translators: %s: kategori adı */
-                    'name'     => sprintf( __( 'Site çerezleri (%s)', 'kvkk-cerez' ), KVKKC_Frontend::category_name( $category ) ),
+                    'name'     => sprintf( __( 'Site çerezleri (%s)', 'umay-cerez-yoneticisi' ), KVKKC_Frontend::category_name( $category ) ),
                     'provider' => get_bloginfo( 'name' ),
                     'category' => $category,
                     'party'    => 1,
@@ -941,7 +941,7 @@ class KVKKC_Admin {
     public function export_csv() {
         check_admin_referer( 'kvkkc_export_csv' );
         if ( ! current_user_can( 'manage_options' ) ) {
-            wp_die( esc_html__( 'Yetkiniz yok.', 'kvkk-cerez' ), 403 );
+            wp_die( esc_html__( 'Yetkiniz yok.', 'umay-cerez-yoneticisi' ), 403 );
         }
 
         global $wpdb;
@@ -957,13 +957,13 @@ class KVKKC_Admin {
         fputcsv(
             $out,
             array(
-                __( 'Rıza No', 'kvkk-cerez' ),
-                __( 'Tarih (UTC)', 'kvkk-cerez' ),
-                __( 'Eylem', 'kvkk-cerez' ),
-                __( 'İzin Verilen Kategoriler', 'kvkk-cerez' ),
-                __( 'Politika Sürümü', 'kvkk-cerez' ),
-                __( 'IP Özeti', 'kvkk-cerez' ),
-                __( 'Sayfa', 'kvkk-cerez' ),
+                __( 'Rıza No', 'umay-cerez-yoneticisi' ),
+                __( 'Tarih (UTC)', 'umay-cerez-yoneticisi' ),
+                __( 'Eylem', 'umay-cerez-yoneticisi' ),
+                __( 'İzin Verilen Kategoriler', 'umay-cerez-yoneticisi' ),
+                __( 'Politika Sürümü', 'umay-cerez-yoneticisi' ),
+                __( 'IP Özeti', 'umay-cerez-yoneticisi' ),
+                __( 'Sayfa', 'umay-cerez-yoneticisi' ),
             ),
             ';'
         );
@@ -1002,9 +1002,9 @@ class KVKKC_Admin {
      */
     public static function render_header( $current ) {
         $pages = array(
-            'kvkk-cerez'          => __( 'Ayarlar', 'kvkk-cerez' ),
-            'kvkk-cerez-envanter' => __( 'Çerez Envanteri', 'kvkk-cerez' ),
-            'kvkk-cerez-kayitlar' => __( 'Rıza Kayıtları', 'kvkk-cerez' ),
+            'kvkk-cerez'          => __( 'Ayarlar', 'umay-cerez-yoneticisi' ),
+            'kvkk-cerez-envanter' => __( 'Çerez Envanteri', 'umay-cerez-yoneticisi' ),
+            'kvkk-cerez-kayitlar' => __( 'Rıza Kayıtları', 'umay-cerez-yoneticisi' ),
         );
         ?>
         <header class="kvkkc-appbar">
@@ -1013,19 +1013,19 @@ class KVKKC_Admin {
                     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 4.5 5.7v5.5c0 4.7 3.1 8.5 7.5 10 4.4-1.5 7.5-5.3 7.5-10V5.7L12 2.8Z"/><path d="m8.6 12.2 2.3 2.3 4.6-4.8"/></svg>
                 </span>
                 <span class="kvkkc-brand-text">
-                    <strong><?php esc_html_e( 'KVKK Çerez Yöneticisi', 'kvkk-cerez' ); ?></strong>
+                    <strong><?php esc_html_e( 'Umay Çerez Yöneticisi', 'umay-cerez-yoneticisi' ); ?></strong>
                     <span><?php echo esc_html( wp_parse_url( home_url(), PHP_URL_HOST ) ); ?></span>
                 </span>
             </div>
-            <nav class="kvkkc-appnav" aria-label="<?php esc_attr_e( 'Eklenti sayfaları', 'kvkk-cerez' ); ?>">
+            <nav class="kvkkc-appnav" aria-label="<?php esc_attr_e( 'Eklenti sayfaları', 'umay-cerez-yoneticisi' ); ?>">
                 <?php foreach ( $pages as $slug => $label ) : ?>
                     <a class="kvkkc-appnav-link<?php echo $current === $slug ? ' is-active' : ''; ?>" href="<?php echo esc_url( admin_url( 'admin.php?page=' . $slug ) ); ?>"<?php echo $current === $slug ? ' aria-current="page"' : ''; ?>><?php echo esc_html( $label ); ?></a>
                 <?php endforeach; ?>
             </nav>
             <div class="kvkkc-version" data-kvkkc-version>
-                <span class="kvkkc-version-label"><?php esc_html_e( 'Politika sürümü', 'kvkk-cerez' ); ?></span>
+                <span class="kvkkc-version-label"><?php esc_html_e( 'Politika sürümü', 'umay-cerez-yoneticisi' ); ?></span>
                 <strong data-kvkkc-version-number><?php echo esc_html( 'v' . kvkkc_policy_version() ); ?></strong>
-                <button type="button" class="kvkkc-link-button" data-kvkkc-bump><?php esc_html_e( 'Yeniden rıza iste', 'kvkk-cerez' ); ?></button>
+                <button type="button" class="kvkkc-link-button" data-kvkkc-bump><?php esc_html_e( 'Yeniden rıza iste', 'umay-cerez-yoneticisi' ); ?></button>
             </div>
         </header>
         <?php
@@ -1138,8 +1138,8 @@ class KVKKC_Admin {
                         <span class="kvkkc-media" data-kvkkc-media>
                             <input type="hidden" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $value ); ?>">
                             <span class="kvkkc-media-thumb"<?php echo $src ? '' : ' hidden'; ?>><img src="<?php echo esc_url( (string) $src ); ?>" alt=""></span>
-                            <button type="button" class="button" data-kvkkc-media-pick><?php esc_html_e( 'Görsel seç', 'kvkk-cerez' ); ?></button>
-                            <button type="button" class="button-link button-link-delete" data-kvkkc-media-clear<?php echo $src ? '' : ' hidden'; ?>><?php esc_html_e( 'Kaldır', 'kvkk-cerez' ); ?></button>
+                            <button type="button" class="button" data-kvkkc-media-pick><?php esc_html_e( 'Görsel seç', 'umay-cerez-yoneticisi' ); ?></button>
+                            <button type="button" class="button-link button-link-delete" data-kvkkc-media-clear<?php echo $src ? '' : ' hidden'; ?>><?php esc_html_e( 'Kaldır', 'umay-cerez-yoneticisi' ); ?></button>
                         </span>
                         <?php
                         break;

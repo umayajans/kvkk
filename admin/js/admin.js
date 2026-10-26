@@ -1,4 +1,4 @@
-/* KVKK Çerez Yöneticisi: yönetim paneli. Bağımlılık yok (logo seçimi için wp.media). */
+/* Umay Çerez Yöneticisi: yönetim paneli. Bağımlılık yok (logo seçimi için wp.media). */
 (function (w, d) {
     'use strict';
 

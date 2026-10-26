@@ -1,4 +1,4 @@
-=== KVKK Çerez ===
+=== Umay Çerez Yöneticisi ===
 Contributors: umayajans
 Tags: kvkk, cookie consent, cookie banner, consent mode, gdpr
 Requires at least: 6.7
@@ -12,7 +12,9 @@ Cookie consent for Turkish sites based on the KVKK Cookie Guidelines: blocks tra
 
 == Description ==
 
-KVKK Çerez is a cookie consent manager for websites that follow Turkey's Personal Data Protection Law (KVKK) and the Turkish Data Protection Authority's Cookie Guidelines (July 2025). It shows visitors the cookies used on the site by category and only lets tracking code run after the visitor allows the matching category.
+Umay Çerez Yöneticisi (Umay Cookie Manager) is a cookie consent manager for websites that follow Turkey's Personal Data Protection Law (KVKK) and the Turkish Data Protection Authority's Cookie Guidelines (July 2025). It shows visitors the cookies used on the site by category and only lets tracking code run after the visitor allows the matching category.
+
+This plugin is developed by Umay Ajans. It is not affiliated with or endorsed by the Turkish Personal Data Protection Authority (KVKK).
 
 The admin screens and the texts shown to visitors are in Turkish, because the plugin is built for websites that serve visitors in Turkey. Every string is translatable.
 
@@ -72,11 +74,17 @@ This plugin is a technical tool. It helps you apply the recommendations of the K
 * Add the `data-kvkkc-skip` attribute to a script tag to exclude it from blocking.
 * Manual blocking rules can be added in the advanced settings as `address or code fragment|category` lines.
 
+== External services ==
+
+This plugin does not connect to any external service and does not send any data to third parties.
+
+It contains a list of domains used by common third party services (for example `googletagmanager.com` or `connect.facebook.net`). The list is only used to recognise the code of those services on your own pages and to hold it back until the visitor gives consent. The site scan only requests pages of your own site from your server.
+
 == Installation ==
 
 1. Install and activate the plugin. Published pages with common legal page addresses (for example `/kvkk-aydinlatma-metni/` or `/cerez-politikasi/`) are linked automatically.
-2. Go to KVKK Çerez > Çerez Envanteri, start the scan and add the services that were found to the inventory.
-3. Go to KVKK Çerez > Ayarlar to adjust the layout and texts. The live preview shows the result.
+2. Go to Umay Çerez > Çerez Envanteri, start the scan and add the services that were found to the inventory.
+3. Go to Umay Çerez > Ayarlar to adjust the layout and texts. The live preview shows the result.
 4. Add the `[kvkk_cerez_tablosu]` shortcode to your cookie policy page.
 
 If the site is behind Cloudflare or another reverse proxy, define the header that carries the real visitor IP in `wp-config.php`. It is only used for the optional IP hash and for rate limiting:

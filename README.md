@@ -1,4 +1,4 @@
-# KVKK Çerez Yöneticisi
+# Umay Çerez Yöneticisi
 
 Umay Ajans'ın WordPress müşterileri için geliştirdiği, KVKK Çerez Uygulamaları Rehberi'ne (Temmuz 2025) göre çalışan çerez rıza eklentisi. Ziyaretçiye çerezleri kategori bazında gösterir, seçimine göre izleme kodlarını açar veya kapalı tutar, verilen rızayı ispat için kaydeder ve sitedeki çerezleri dış servis kullanmadan tarar.
 
@@ -12,9 +12,9 @@ Müşteriye özel kurulum notları yalnızca yerelde, `docs/` klasöründe tutul
 ## Kurulum
 
 1. Repoyu `wp-content/plugins/kvkk-cerez` klasörüne kopyalayın (klasör adı önemli değil, ana dosya `kvkk-cerez.php`).
-2. Eklentiler ekranından **KVKK Çerez**'i etkinleştirin. Kurulumda yaygın adlı yasal sayfalar (`/kvkk-aydinlatma-metni/`, `/cerez-politikasi/`, `/gizlilik-politikasi/`, `/acik-riza-metni/`) bulunursa otomatik bağlanır.
-3. **KVKK Çerez > Çerez Envanteri** ekranında **Taramayı başlat**'a basın, bulunan hizmetleri envantere ekleyin.
-4. **KVKK Çerez > Ayarlar** ekranında görünümü ve metinleri düzenleyin. Sağdaki **Rehber kontrol listesi** ayarları rehber maddeleriyle karşılaştırır; tüm maddeler yeşil olduğunda mühür basılır. Liste hukuki görüş değildir.
+2. Eklentiler ekranından **Umay Çerez Yöneticisi**'ni etkinleştirin. Kurulumda yaygın adlı yasal sayfalar (`/kvkk-aydinlatma-metni/`, `/cerez-politikasi/`, `/gizlilik-politikasi/`, `/acik-riza-metni/`) bulunursa otomatik bağlanır.
+3. **Umay Çerez > Çerez Envanteri** ekranında **Taramayı başlat**'a basın, bulunan hizmetleri envantere ekleyin.
+4. **Umay Çerez > Ayarlar** ekranında görünümü ve metinleri düzenleyin. Sağdaki **Rehber kontrol listesi** ayarları rehber maddeleriyle karşılaştırır; tüm maddeler yeşil olduğunda mühür basılır. Liste hukuki görüş değildir.
 5. Çerez politikası sayfasına `[kvkk_cerez_tablosu]` kısa kodunu ekleyin.
 
 ## Nasıl çalışır
@@ -77,17 +77,17 @@ phpcs --standard=phpcs.xml.dist                     # WordPress kodlama standard
 Dağıtım paketi yalnızca git'teki dosyalardan üretilir; `.gitattributes` içindeki export-ignore satırları `tests/`, `docs/`, `phpcs.xml.dist` ve gizli dosyaları dışarıda bırakır.
 
 ```bash
-git archive --format=zip --prefix=kvkk-cerez/ -o kvkk-cerez-1.0.0.zip HEAD
+git archive --format=zip --prefix=umay-cerez-yoneticisi/ -o umay-cerez-yoneticisi-1.0.0.zip HEAD
 ```
 
 Gönderimden önce paket açılır ve Plugin Check, WordPress.org'un gönderimde kullandığı parametrelerle çalıştırılır. Hata (ERROR) kalmamalıdır:
 
 ```bash
-wp plugin check /yol/kvkk-cerez --slug=kvkk-cerez --categories=plugin_repo \
+wp plugin check /yol/umay-cerez-yoneticisi --slug=umay-cerez-yoneticisi --categories=plugin_repo \
   --error-severity=7 --warning-severity=6 --include-low-severity-errors --exclude-checks=prefixing
 ```
 
-Dizindeki slug `kvkk-cerez`'dir ve gönderimdeki `Plugin Name` başlığından üretildiği için gönderim paketinde ad "KVKK Çerez" olarak kalır. Onaydan sonra görünen ad değiştirilebilir, slug değiştirilemez. Her sürümde `Version` (ana dosya), `KVKKC_VERSION` ve `Stable tag` (readme) birlikte artar.
+Dizindeki slug ve text domain `umay-cerez-yoneticisi`'dir. İnceleme ekibi "KVKK" ile başlayan adları resmi kurumla bağlantı ima ettiği için kabul etmez; görünen ad değişse bile KVKK başa alınmamalıdır. Slug onaydan sonra değiştirilemez. Ana dosyanın adı (`kvkk-cerez.php`), kısa kodlar, yönetim sayfası adresleri ve `kvkkc` ön eki iç adlardır ve slug'dan bağımsızdır. Her sürümde `Version` (ana dosya), `KVKKC_VERSION` ve `Stable tag` (readme) birlikte artar.
 
 Testler HTML API sınıflarını bir WordPress kurulumundan alır (varsayılan `../tdsite`). `tests/fixtures/` klasörüne koyulan gerçek sayfa HTML'leri varsa engelleyici süre ölçümüyle birlikte onlarla da çalışır; bu dosyalar müşteri içeriği taşıdığı için repoya girmez.
 

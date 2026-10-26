@@ -1,4 +1,4 @@
-/* KVKK Çerez Yöneticisi: çerez bandı ve tercihler penceresi. Bağımlılık yok. */
+/* Umay Çerez Yöneticisi: çerez bandı ve tercihler penceresi. Bağımlılık yok. */
 (function (w, d) {
     'use strict';
 

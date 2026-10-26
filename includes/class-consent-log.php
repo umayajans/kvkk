@@ -116,7 +116,7 @@ class KVKKC_Consent_Log {
             return true;
         }
 
-        return new WP_Error( 'kvkkc_cross_origin', __( 'Bu istek yalnızca sitenin kendi sayfalarından yapılabilir.', 'kvkk-cerez' ), array( 'status' => 403 ) );
+        return new WP_Error( 'kvkkc_cross_origin', __( 'Bu istek yalnızca sitenin kendi sayfalarından yapılabilir.', 'umay-cerez-yoneticisi' ), array( 'status' => 403 ) );
     }
 
     /**
@@ -198,7 +198,7 @@ class KVKKC_Consent_Log {
     public static function normalize( $params ) {
         $action = isset( $params['action'] ) ? $params['action'] : '';
         if ( ! in_array( $action, self::ACTIONS, true ) ) {
-            return new WP_Error( 'kvkkc_invalid_action', __( 'Geçersiz eylem.', 'kvkk-cerez' ), array( 'status' => 400 ) );
+            return new WP_Error( 'kvkkc_invalid_action', __( 'Geçersiz eylem.', 'umay-cerez-yoneticisi' ), array( 'status' => 400 ) );
         }
 
         $given = isset( $params['categories'] ) && is_array( $params['categories'] ) ? $params['categories'] : array();
@@ -260,10 +260,10 @@ class KVKKC_Consent_Log {
      */
     public static function action_labels() {
         return array(
-            'accept_all' => __( 'Tümünü kabul', 'kvkk-cerez' ),
-            'reject_all' => __( 'Tümünü ret', 'kvkk-cerez' ),
-            'custom'     => __( 'Özel seçim', 'kvkk-cerez' ),
-            'withdraw'   => __( 'Geri alma', 'kvkk-cerez' ),
+            'accept_all' => __( 'Tümünü kabul', 'umay-cerez-yoneticisi' ),
+            'reject_all' => __( 'Tümünü ret', 'umay-cerez-yoneticisi' ),
+            'custom'     => __( 'Özel seçim', 'umay-cerez-yoneticisi' ),
+            'withdraw'   => __( 'Geri alma', 'umay-cerez-yoneticisi' ),
         );
     }
 }

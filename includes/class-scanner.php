@@ -75,7 +75,7 @@ class KVKKC_Scanner {
     public static function ajax_start() {
         check_ajax_referer( 'kvkkc_admin' );
         if ( ! current_user_can( 'manage_options' ) ) {
-            wp_send_json_error( array( 'message' => __( 'Yetkiniz yok.', 'kvkk-cerez' ) ), 403 );
+            wp_send_json_error( array( 'message' => __( 'Yetkiniz yok.', 'umay-cerez-yoneticisi' ) ), 403 );
         }
 
         $limit = isset( $_POST['limit'] ) ? min( 60, max( 1, absint( $_POST['limit'] ) ) ) : 20;
@@ -104,7 +104,7 @@ class KVKKC_Scanner {
     public static function ajax_url() {
         check_ajax_referer( 'kvkkc_admin' );
         if ( ! current_user_can( 'manage_options' ) ) {
-            wp_send_json_error( array( 'message' => __( 'Yetkiniz yok.', 'kvkk-cerez' ) ), 403 );
+            wp_send_json_error( array( 'message' => __( 'Yetkiniz yok.', 'umay-cerez-yoneticisi' ) ), 403 );
         }
 
         $url   = isset( $_POST['url'] ) ? esc_url_raw( wp_unslash( $_POST['url'] ) ) : '';
@@ -112,10 +112,10 @@ class KVKKC_Scanner {
         $token = get_transient( self::TOKEN );
 
         if ( '' === $url || (string) wp_parse_url( $url, PHP_URL_HOST ) !== $host ) {
-            wp_send_json_error( array( 'message' => __( 'Yalnızca bu sitenin adresleri taranabilir.', 'kvkk-cerez' ) ), 400 );
+            wp_send_json_error( array( 'message' => __( 'Yalnızca bu sitenin adresleri taranabilir.', 'umay-cerez-yoneticisi' ) ), 400 );
         }
         if ( ! is_string( $token ) || '' === $token ) {
-            wp_send_json_error( array( 'message' => __( 'Tarama süresi doldu, lütfen yeniden başlatın.', 'kvkk-cerez' ) ), 400 );
+            wp_send_json_error( array( 'message' => __( 'Tarama süresi doldu, lütfen yeniden başlatın.', 'umay-cerez-yoneticisi' ) ), 400 );
         }
 
         $response = wp_safe_remote_get(

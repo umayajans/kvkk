@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name:       KVKK Çerez
+ * Plugin Name:       Umay Çerez Yöneticisi
  * Plugin URI:        https://www.umayajans.com
- * Description:       KVKK Çerez Rehberi esas alınarak hazırlanan rıza bandı, otomatik çerez taraması, izleme kodu engelleme ve rıza kayıtları.
+ * Description:       Cookie consent for Turkish websites based on the KVKK Cookie Guidelines: consent banner, blocking before consent, site scan and consent records.
  * Version:           1.0.0
  * Requires at least: 6.7
  * Requires PHP:      7.4
@@ -10,7 +10,7 @@
  * Author URI:        https://www.umayajans.com
  * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       kvkk-cerez
+ * Text Domain:       umay-cerez-yoneticisi
  * Domain Path:       /languages
  *
  * @package KVKK_Cerez
