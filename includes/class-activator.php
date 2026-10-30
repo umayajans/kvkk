@@ -187,7 +187,6 @@ class KVKKC_Activator {
 
             // Gelişmiş.
             'rules'               => '',
-            'custom_css'          => '',
             'z_index'             => 99999,
             'store_ip_hash'       => 1,
             'retention_months'    => 24,

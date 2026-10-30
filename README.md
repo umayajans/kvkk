@@ -62,6 +62,7 @@ Ziyaretçi rıza numarasını tercihler penceresinin altında görür; yönetici
 | `document` üzerinde `kvkkc:consent` olayı | `detail.categories` izin verilen kategoriler. |
 | `dataLayer` içinde `kvkkc_consent` olayı | `kvkkc_islevsel`, `kvkkc_analitik`, `kvkkc_pazarlama` değişkenleriyle. |
 | `data-kvkkc-skip` özniteliği | Script'i engellemeden muaf tutar. |
+| `.kvkkc` ve `.kvkkc-*` sınıfları | Görünüm ayarlardaki form alanlarıyla değişir; eklentide serbest CSS alanı yoktur (WordPress.org kuralı). Ötesi için temanın Ek CSS alanında seçicilere `.kvkkc` ile başlayın. |
 | Ayarlar > Gelişmiş > Elle kurallar | `adres veya kod parçası|kategori` satırları; `zorunlu` yazılan kural kodu engellemeden çıkarır. |
 
 ## Geliştirme

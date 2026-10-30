@@ -38,9 +38,10 @@ class KVKKC_Consent_Log {
     /**
      * POST /wp-json/kvkkc/v1/consent
      *
-     * Önbellekten gelen sayfalarda nonce tazeliği garanti edilemeyeceği için uç kimlik istemez;
-     * bunun yerine istek sitenin kendi sayfalarından gelmeli (same_origin), girdi sıkı doğrulanır
-     * ve hız sınırı uygulanır.
+     * Uç nonce istemez: sayfalar önbellekten servis edildiği için nonce süresi dolmuş olabilir ve
+     * giriş yapmamış ziyaretçide WordPress nonce'u ziyaretçiye değil siteye bağlıdır. Bunun yerine
+     * istek sitenin kendi sayfasından gelmeli (same_origin), girdi şemayla doğrulanır ve hız sınırı
+     * uygulanır.
      */
     public static function register_route() {
         register_rest_route(
@@ -86,10 +87,10 @@ class KVKKC_Consent_Log {
     }
 
     /**
-     * İstek sitenin kendi sayfasından mı geliyor? Tarayıcılar başka bir siteden yapılan POST
-     * isteklerinde Origin başlığını her zaman gönderir; böylece başka bir site ziyaretçi adına
-     * rıza kaydı yazamaz. Başlıksız istekler tarayıcı dışı araçlardan gelir ve bunlar başlığı
-     * zaten taklit edebileceği için onlara karşı hız sınırı uygulanır.
+     * İstek sitenin kendi sayfasından mı geliyor? Tarayıcılar fetch ile yapılan her POST isteğine,
+     * aynı kaynaklı olsa da, Origin başlığını ekler; Referrer-Policy bu istekte Origin'i gizlemez.
+     * Origin yoksa Referer'a bakılır. İkisi de yoksa ya da başka bir siteyi gösteriyorsa istek
+     * reddedilir; böylece başka bir site ziyaretçi adına rıza kaydı yazamaz.
      *
      * @param WP_REST_Request $request İstek.
      * @return true|WP_Error
@@ -99,11 +100,8 @@ class KVKKC_Consent_Log {
         if ( null === $source ) {
             $source = $request->get_header( 'referer' );
         }
-        if ( null === $source ) {
-            return true;
-        }
 
-        $host    = strtolower( (string) wp_parse_url( $source, PHP_URL_HOST ) );
+        $host    = strtolower( (string) wp_parse_url( (string) $source, PHP_URL_HOST ) );
         $allowed = array(
             strtolower( (string) $request->get_header( 'host' ) ),
             strtolower( (string) wp_parse_url( home_url(), PHP_URL_HOST ) ),

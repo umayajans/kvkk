@@ -109,6 +109,10 @@ Click "Yeniden rıza iste" (request consent again) in the plugin header. The pol
 
 Yes. The HTML sent to visitors is the same for everyone and the decision is made in the browser. When settings or the inventory change, the plugin clears the cache of LiteSpeed Cache, WP Rocket, W3 Total Cache and WP Super Cache.
 
+= Can I change the design of the banner? =
+
+The settings screen has controls for the layout, position, colors, font size, corner radius and shadow, with a live preview. For anything beyond that, use the Additional CSS of your theme (Appearance > Customize > Additional CSS, or Styles > Additional CSS in the Site Editor). All elements of the banner use class names that start with `kvkkc`, for example `.kvkkc .kvkkc-btn`.
+
 = Is the plugin available in English? =
 
 The interface is written in Turkish. All strings use the WordPress translation functions, so translations can be added through translate.wordpress.org.

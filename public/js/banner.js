@@ -144,7 +144,7 @@
             vars.push('--kvkkc-' + key + ':' + cfg.vars[key]);
         }
         vars.push('--kvkkc-z:' + cfg.z);
-        styleEl = h('style', { id: 'kvkkc-vars', text: ':root{' + vars.join(';') + '}' + (cfg.css || '') });
+        styleEl = h('style', { id: 'kvkkc-vars', text: ':root{' + vars.join(';') + '}' });
         d.documentElement.classList.toggle('kvkkc-dark-auto', !!cfg.autoDark);
 
         root = h('div', { id: 'kvkkc-root', cls: classes.join(' ').trim() });

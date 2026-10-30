@@ -26,7 +26,7 @@ $kvkkc_intros = array(
     'kategoriler' => __( 'Tercihler penceresindeki dört kategori. Hangi çerezin hangi kategoride olduğunu Çerez Envanteri sayfasından yönetin.', 'umay-cerez-yoneticisi' ),
     'sayfalar'    => __( 'Bantta ve tercihler penceresinde bağlantısı verilen yasal metinler.', 'umay-cerez-yoneticisi' ),
     'davranis'    => __( 'Tercihin süresi, iznin geri alınması ve sitedeki diğer eklentilerle iletişim.', 'umay-cerez-yoneticisi' ),
-    'gelismis'    => __( 'Elle engelleme kuralları, rıza kayıtlarının saklanması ve özel CSS.', 'umay-cerez-yoneticisi' ),
+    'gelismis'    => __( 'Elle engelleme kuralları, katman sırası ve rıza kayıtlarının saklanması.', 'umay-cerez-yoneticisi' ),
 );
 
 $kvkkc_section_fields = array();

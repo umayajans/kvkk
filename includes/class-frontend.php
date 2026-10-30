@@ -275,7 +275,6 @@ class KVKKC_Frontend {
                 'width'      => (int) $v( 'card_width' ) . 'px',
             ),
             'logo'       => $logo ? $logo : '',
-            'css'        => (string) $v( 'custom_css' ),
             'text'       => array(
                 'title'       => $v( 'title' ),
                 'message'     => $v( 'message' ),

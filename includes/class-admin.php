@@ -181,7 +181,6 @@ class KVKKC_Admin {
                 'sections' => array(
                     'kurallar' => __( 'Engelleme kuralları', 'umay-cerez-yoneticisi' ),
                     'kayit'    => __( 'Rıza kayıtları', 'umay-cerez-yoneticisi' ),
-                    'stil'     => __( 'Özel CSS', 'umay-cerez-yoneticisi' ),
                 ),
                 'icon'     => '<path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/>',
             ),
@@ -587,14 +586,6 @@ class KVKKC_Admin {
                 'text'    => __( 'Rıza kayıtlarını da sil', 'umay-cerez-yoneticisi' ),
                 'desc'    => __( 'Kapalıyken eklenti silinse bile kayıtlar ispat için veritabanında kalır.', 'umay-cerez-yoneticisi' ),
             ),
-            'custom_css'          => array(
-                'section'     => 'stil',
-                'label'       => __( 'Özel CSS', 'umay-cerez-yoneticisi' ),
-                'type'        => 'css',
-                'rows'        => 8,
-                'placeholder' => '.kvkkc .kvkkc-title { letter-spacing: .02em; }',
-                'desc'        => __( 'Bandın tüm öğeleri .kvkkc ile başlayan sınıflar taşır. Tema stillerini geçmek için seçicilere .kvkkc ile başlayın.', 'umay-cerez-yoneticisi' ),
-            ),
         );
 
         return $fields;
@@ -657,10 +648,6 @@ class KVKKC_Admin {
                     $value = absint( $raw );
                     break;
 
-                case 'css':
-                    $value = self::sanitize_css( $raw );
-                    break;
-
                 case 'rules':
                     $lines = array();
                     foreach ( KVKKC_Services::parse_rules( $raw ) as $rule ) {
@@ -697,21 +684,6 @@ class KVKKC_Admin {
             'i'      => array(),
             'br'     => array(),
         );
-    }
-
-    /**
-     * Özel CSS: etiketler, script çalıştırabilecek ve dış dosya çağıran ifadeler çıkarılır.
-     * Bant rızadan önce göründüğü için mutlak adresli url() (başka bir sunucuya istek) da
-     * kaldırılır; göreli adresler ve data: kalır.
-     *
-     * @param string $css CSS.
-     * @return string
-     */
-    public static function sanitize_css( $css ) {
-        $css = wp_strip_all_tags( (string) $css );
-        $css = preg_replace( '/(javascript|vbscript)\s*:|expression\s*\(|@import|behavior\s*:|-moz-binding/i', '', $css );
-        $css = preg_replace( '#url\(\s*[\'"]?\s*(?:[a-z][a-z0-9+.-]*:)?//[^)]*\)#i', 'none', $css );
-        return self::cut( trim( $css ), 20000 );
     }
 
     /**
@@ -1118,9 +1090,8 @@ class KVKKC_Admin {
 
                     case 'textarea':
                     case 'html':
-                    case 'css':
                     case 'rules':
-                        $mono = in_array( $type, array( 'css', 'rules' ), true ) ? ' kvkkc-mono' : '';
+                        $mono = 'rules' === $type ? ' kvkkc-mono' : '';
                         ?>
                         <textarea id="<?php echo esc_attr( $id ); ?>" class="large-text<?php echo esc_attr( $mono ); ?>" name="<?php echo esc_attr( $name ); ?>" rows="<?php echo esc_attr( isset( $field['rows'] ) ? $field['rows'] : 3 ); ?>" placeholder="<?php echo esc_attr( isset( $field['placeholder'] ) ? $field['placeholder'] : '' ); ?>" spellcheck="<?php echo $mono ? 'false' : 'true'; ?>"><?php echo esc_textarea( $value ); ?></textarea>
                         <?php

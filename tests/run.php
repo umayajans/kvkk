@@ -150,6 +150,29 @@ function is_wp_error( $thing ) {
     return $thing instanceof WP_Error;
 }
 
+function home_url( $path = '' ) {
+    return 'http://test.local' . $path;
+}
+
+function site_url( $path = '' ) {
+    return 'http://test.local' . $path;
+}
+
+/**
+ * WP_REST_Request yerine yalnızca başlık okuyan sahte istek.
+ */
+class KVKKC_Test_Request {
+    private $headers;
+
+    public function __construct( $headers ) {
+        $this->headers = $headers;
+    }
+
+    public function get_header( $key ) {
+        return isset( $this->headers[ $key ] ) ? $this->headers[ $key ] : null;
+    }
+}
+
 class WP_Error {
     private $code;
 
@@ -491,6 +514,17 @@ $rec = KVKKC_Consent_Log::normalize(
 );
 check( 'normalize: uzun sayfa yolu kırpılır', strlen( $rec['page'] ), 255 );
 
+// İzin denetimi: istek sitenin kendi sayfasından gelmeli.
+foreach ( array(
+    'başlıksız istek reddedilir'   => array( array( 'host' => 'test.local' ), false ),
+    'aynı site Origin geçer'       => array( array( 'host' => 'test.local', 'origin' => 'http://test.local' ), true ),
+    'Origin null reddedilir'       => array( array( 'host' => 'test.local', 'origin' => 'null' ), false ),
+    'başka site Origin reddedilir' => array( array( 'host' => 'test.local', 'origin' => 'https://evil.example' ), false ),
+    'Origin yoksa Referer geçer'   => array( array( 'host' => 'test.local:8080', 'referer' => 'http://test.local:8080/sayfa/' ), true ),
+) as $kvkkc_label => $kvkkc_case ) {
+    check( 'same_origin: ' . $kvkkc_label, true === KVKKC_Consent_Log::same_origin( new KVKKC_Test_Request( $kvkkc_case[0] ) ), $kvkkc_case[1] );
+}
+
 // ---------------------------------------------------------------------
 // IP özeti, hız sınırı, CSV
 // ---------------------------------------------------------------------
@@ -534,7 +568,7 @@ $clean    = KVKKC_Admin::sanitize(
         'float_enabled' => '1',
         'title'         => '<b>Çerez</b> Tercihleri',
         'message'       => '<p onclick="x()">Metin <a href="/cerez/">link</a><script>alert(1)</script></p>',
-        'custom_css'    => ".kvkkc{color:red}</style><script>alert(1)</script>\n.x{background:url(javascript:alert(1))}\n@import url(x.css);\n.y{background:url( \"https://cdn.example/a.png\" )}\n.z{background:URL(//cdn.example/b.png)}\n.w{background:url(/wp-content/c.png)}",
+        'custom_css'    => '.kvkkc{color:red}',
         'rules'         => "ornek-izleme.com|pazarlama\n# yorum\nbos|olmayan\n|analitik\nx.com/a | Analitik ",
         'bilinmeyen'    => 'x',
     )
@@ -550,13 +584,8 @@ check( 'sanitize: düz metin etiket temizlenir', $clean['title'], 'Çerez Tercih
 has( 'sanitize: mesajda link kalır', $clean['message'], '<a href="/cerez/">link</a>' );
 has( 'sanitize: mesajda script kalmaz', $clean['message'], '<script', false );
 has( 'sanitize: mesajda olay özniteliği kalmaz', $clean['message'], 'onclick', false );
-has( 'sanitize: css stil kapanışı kalmaz', strtolower( $clean['custom_css'] ), '</style', false );
-has( 'sanitize: css javascript: kalmaz', strtolower( $clean['custom_css'] ), 'javascript:', false );
-has( 'sanitize: css @import kalmaz', strtolower( $clean['custom_css'] ), '@import', false );
-has( 'sanitize: css geçerli kural kalır', $clean['custom_css'], '.kvkkc{color:red}' );
-has( 'sanitize: css dış adresli url() kalmaz', strtolower( $clean['custom_css'] ), 'cdn.example', false );
-has( 'sanitize: css göreli url() kalır', $clean['custom_css'], 'url(/wp-content/c.png)' );
 check( 'sanitize: bilinmeyen anahtar atılır', array_key_exists( 'bilinmeyen', $clean ), false );
+check( 'sanitize: eski özel CSS anahtarı atılır', array_key_exists( 'custom_css', $clean ), false );
 check( 'sanitize: kurallar normalize', $clean['rules'], "ornek-izleme.com|pazarlama\nx.com/a|analitik" );
 check( 'parse_rules', KVKKC_Services::parse_rules( $clean['rules'] ), array( array( 'ornek-izleme.com', 'pazarlama' ), array( 'x.com/a', 'analitik' ) ) );
 check( 'sanitize: her şema alanı dolu', array_keys( $clean ) == array_keys( KVKKC_Admin::fields() ), true );
