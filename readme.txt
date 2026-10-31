@@ -74,6 +74,10 @@ This plugin is a technical tool. It helps you apply the recommendations of the K
 * Add the `data-kvkkc-skip` attribute to a script tag to exclude it from blocking.
 * Manual blocking rules can be added in the advanced settings as `address or code fragment|category` lines.
 
+= Development =
+
+The source code is developed in public on [GitHub](https://github.com/umayajans/kvkk). Bug reports and pull requests are welcome.
+
 == External services ==
 
 This plugin does not connect to any external service and does not send any data to third parties.

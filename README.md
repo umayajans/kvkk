@@ -2,6 +2,7 @@
 
 Umay Ajans'ın WordPress müşterileri için geliştirdiği, KVKK Çerez Uygulamaları Rehberi'ne (Temmuz 2025) göre çalışan çerez rıza eklentisi. Ziyaretçiye çerezleri kategori bazında gösterir, seçimine göre izleme kodlarını açar veya kapalı tutar, verilen rızayı ispat için kaydeder ve sitedeki çerezleri dış servis kullanmadan tarar.
 
+- WordPress.org: https://wordpress.org/plugins/umay-cerez-yoneticisi/
 - Gereksinim: WordPress 6.7+, PHP 7.4+
 - Dil: Türkçe (kaynak metinler Türkçe). WordPress.org dizin kuralı gereği `readme.txt` İngilizcedir; Türkçe readme translate.wordpress.org üzerinden çevrilir.
 - Bağımlılık: yok (jQuery, React, derleme adımı yok)
